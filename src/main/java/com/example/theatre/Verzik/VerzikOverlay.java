@@ -94,32 +94,32 @@ public class VerzikOverlay extends RoomOverlay {
                 if (this.config.verzikProjectiles()) {
                     iterator = this.verzik.getVerzikRangeProjectiles().values().iterator();
 
-                    while(iterator.hasNext()) {
-                        this.drawTile(graphics, (WorldPoint)iterator.next(), this.config.verzikProjectilesColor(), 1, 255, 20);
+                    while (iterator.hasNext()) {
+                        this.drawTile(graphics, (WorldPoint) iterator.next(), this.config.verzikProjectilesColor(), 1, 255, 20);
                     }
                 }
 
                 if (this.config.verzikReds()) {
                     this.verzik.getVerzikReds().forEach((k, v) -> {
-                        int v_health = (Integer)v.getValue();
-                        int v_healthRation = (Integer)v.getKey();
+                        int v_health = (Integer) v.getValue();
+                        int v_healthRation = (Integer) v.getKey();
                         if (k.getName() != null && k.getHealthScale() > 0) {
                             v_health = k.getHealthScale();
                             v_healthRation = Math.min(v_healthRation, k.getHealthRatio());
                         }
 
-                        float percentage = (float)v_healthRation / (float)v_health * 100.0F;
-                        Point textLocation = k.getCanvasTextLocation(graphics, String.valueOf(DECIMAL_FORMAT.format((double)percentage)), 80);
+                        float percentage = (float) v_healthRation / (float) v_health * 100.0F;
+                        Point textLocation = k.getCanvasTextLocation(graphics, String.valueOf(DECIMAL_FORMAT.format((double) percentage)), 80);
                         if (textLocation != null) {
-                            this.renderTextLocation(graphics, String.valueOf(DECIMAL_FORMAT.format((double)percentage)), Color.WHITE, textLocation);
+                            this.renderTextLocation(graphics, String.valueOf(DECIMAL_FORMAT.format((double) percentage)), Color.WHITE, textLocation);
                         }
 
                     });
-                    NPC[] reds = (NPC[])this.verzik.getVerzikReds().keySet().toArray(new NPC[0]);
+                    NPC[] reds = (NPC[]) this.verzik.getVerzikReds().keySet().toArray(new NPC[0]);
                     NPC[] var15 = reds;
                     int var6 = reds.length;
 
-                    for(int var7 = 0; var7 < var6; ++var7) {
+                    for (int var7 = 0; var7 < var6; ++var7) {
                         NPC npc = var15[var7];
                         if (npc.getName() != null && npc.getHealthScale() > 0 && npc.getHealthRatio() < 100) {
                             Pair<Integer, Integer> newVal = new MutablePair(npc.getHealthRatio(), npc.getHealthScale());
@@ -194,8 +194,8 @@ public class VerzikOverlay extends RoomOverlay {
                     String text = Integer.toString(this.verzik.getVerzikYellows());
                     Iterator var21 = this.client.getGraphicsObjects().iterator();
 
-                    while(var21.hasNext()) {
-                        GraphicsObject object = (GraphicsObject)var21.next();
+                    while (var21.hasNext()) {
+                        GraphicsObject object = (GraphicsObject) var21.next();
                         if (object.getId() == 1595) {
                             this.drawTile(graphics, WorldPoint.fromLocal(this.client, object.getLocation()), Color.YELLOW, 1, 255, 0);
                             LocalPoint lp = object.getLocation();
@@ -208,8 +208,8 @@ public class VerzikOverlay extends RoomOverlay {
                 if (this.config.verzikGreenBall() || this.config.verzikGreenBallTick()) {
                     iterator = this.client.getProjectiles().iterator();
 
-                    while(iterator.hasNext()) {
-                        Projectile p = (Projectile)iterator.next();
+                    while (iterator.hasNext()) {
+                        Projectile p = (Projectile) iterator.next();
                         if (p.getId() == 1598) {
                             if (this.config.verzikGreenBallTick()) {
                                 Point point = this.getProjectilePoint(p);
@@ -276,9 +276,9 @@ public class VerzikOverlay extends RoomOverlay {
     }
 
     private Point getProjectilePoint(Projectile p) {
-        int x = (int)p.getX();
-        int y = (int)p.getY();
-        int z = (int)p.getZ();
+        int x = (int) p.getX();
+        int y = (int) p.getY();
+        int z = (int) p.getZ();
         return Perspective.localToCanvas(this.client, new LocalPoint(x, y), 0, Perspective.getTileHeight(this.client, new LocalPoint(x, y), p.getFloor()) - z);
     }
 }

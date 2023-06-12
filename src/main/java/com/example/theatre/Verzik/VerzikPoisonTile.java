@@ -35,7 +35,7 @@ public class VerzikPoisonTile {
         if (this == o) {
             return true;
         } else if (o != null && this.getClass() == o.getClass()) {
-            VerzikPoisonTile that = (VerzikPoisonTile)o;
+            VerzikPoisonTile that = (VerzikPoisonTile) o;
             return this.tile.equals(that.tile);
         } else {
             return false;

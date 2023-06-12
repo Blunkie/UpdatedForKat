@@ -27,7 +27,7 @@ class NyloNPC {
         if (!(other instanceof NyloNPC)) {
             return false;
         } else {
-            NyloNPC otherNpc = (NyloNPC)other;
+            NyloNPC otherNpc = (NyloNPC) other;
             return this.nyloType.equals(otherNpc.getNyloType()) && this.spawnPoint.equals(otherNpc.getSpawnPoint());
         }
     }

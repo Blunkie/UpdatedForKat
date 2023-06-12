@@ -10,26 +10,31 @@ import javax.inject.Inject;
 @Getter
 public abstract class Sala {
 
-	protected final ToacitoConfig config;
-	protected final ToacitoPlugin plugin;
+    protected final ToacitoConfig config;
+    protected final ToacitoPlugin plugin;
 
-	@Inject
-	protected OverlayManager overlayManager;
+    @Inject
+    protected OverlayManager overlayManager;
 
-	@Inject
-	private Client client;
+    @Inject
+    private Client client;
 
-	@Inject
-	protected Sala(ToacitoConfig config, ToacitoPlugin plugin) {
-		this.config = config;
-		this.plugin = plugin;
-	}
+    @Inject
+    protected Sala(ToacitoConfig config, ToacitoPlugin plugin) {
+        this.config = config;
+        this.plugin = plugin;
+    }
 
-	public void init(){}
-	public void load(){}
-	public void unload(){}
+    public void init() {
+    }
 
-	public boolean isRoomRegion(Integer roomId){
-		return ArrayUtils.contains(this.client.getMapRegions(),roomId.intValue());
-	}
+    public void load() {
+    }
+
+    public void unload() {
+    }
+
+    public boolean isRoomRegion(Integer roomId) {
+        return ArrayUtils.contains(this.client.getMapRegions(), roomId.intValue());
+    }
 }

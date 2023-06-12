@@ -14,36 +14,36 @@ import javax.inject.Inject;
 @Slf4j
 public class WardenP4 extends Sala {
 
-	@Inject
-	private Client client;
+    @Inject
+    private Client client;
 
-	@Inject
-	private WardenP4Overlay wardenP4Overlay;
+    @Inject
+    private WardenP4Overlay wardenP4Overlay;
 
-	public static GraphicsObject piedra = null;
+    public static GraphicsObject piedra = null;
 
 
-	@Inject
-	protected WardenP4(ToacitoConfig config, ToacitoPlugin plugin) {
-		super(config, plugin);
-	}
+    @Inject
+    protected WardenP4(ToacitoConfig config, ToacitoPlugin plugin) {
+        super(config, plugin);
+    }
 
-	@Override
-	public void load() {
-		this.overlayManager.add(wardenP4Overlay);
-	}
+    @Override
+    public void load() {
+        this.overlayManager.add(wardenP4Overlay);
+    }
 
-	@Override
-	public void unload() {
-		this.overlayManager.remove(wardenP4Overlay);
-	}
+    @Override
+    public void unload() {
+        this.overlayManager.remove(wardenP4Overlay);
+    }
 
-	@Subscribe
-	public void onGraphicsObjectCreated(GraphicsObjectCreated event){
-		if(event.getGraphicsObject().getId()==2250 || event.getGraphicsObject().getId() ==2251){
-			piedra = event.getGraphicsObject();
-			log.info("Katarina: {}",event.getGraphicsObject().getId());
-		}
-	}
+    @Subscribe
+    public void onGraphicsObjectCreated(GraphicsObjectCreated event) {
+        if (event.getGraphicsObject().getId() == 2250 || event.getGraphicsObject().getId() == 2251) {
+            piedra = event.getGraphicsObject();
+            log.info("Katarina: {}", event.getGraphicsObject().getId());
+        }
+    }
 
 }

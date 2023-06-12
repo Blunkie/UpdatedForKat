@@ -38,7 +38,7 @@ public abstract class RoomOverlay extends Overlay {
                 Polygon poly = Perspective.getCanvasTilePoly(this.client, lp);
                 if (poly != null) {
                     graphics.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), outlineAlpha));
-                    graphics.setStroke(new BasicStroke((float)strokeWidth));
+                    graphics.setStroke(new BasicStroke((float) strokeWidth));
                     graphics.draw(poly);
                     graphics.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), fillAlpha));
                     graphics.fill(poly);
@@ -65,7 +65,7 @@ public abstract class RoomOverlay extends Overlay {
     protected void renderPoly(Graphics2D graphics, Color color, Polygon polygon, int width) {
         if (polygon != null) {
             graphics.setColor(color);
-            graphics.setStroke(new BasicStroke((float)width));
+            graphics.setStroke(new BasicStroke((float) width));
             graphics.draw(polygon);
         }
 
@@ -74,7 +74,7 @@ public abstract class RoomOverlay extends Overlay {
     protected void renderPolyWithFillAlpha(Graphics2D graphics, Color color, Polygon polygon, int width, int alpha) {
         if (polygon != null) {
             graphics.setColor(color);
-            graphics.setStroke(new BasicStroke((float)width));
+            graphics.setStroke(new BasicStroke((float) width));
             graphics.draw(polygon);
             graphics.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha));
             graphics.fill(polygon);

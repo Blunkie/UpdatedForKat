@@ -14,86 +14,77 @@ import javax.inject.Inject;
 
 @Getter
 public class Pantheon {
-	@Inject
-	private Client client;
+    @Inject
+    private Client client;
 
-	@Inject
-	private OverlayManager overlayManager;
+    @Inject
+    private OverlayManager overlayManager;
 
-	@Inject
-	private PantheonOverlay pantheonOverlay;
+    @Inject
+    private PantheonOverlay pantheonOverlay;
 
-	@Inject
-	private PantheonPrayOverlay pantheonPrayOverlay;
-
-
-	@Inject
-	private ToacitoConfig config;
-
-	@Inject
-	Pantheon(ToacitoConfig config){
-		this.config=config;
-	}
+    @Inject
+    private PantheonPrayOverlay pantheonPrayOverlay;
 
 
+    @Inject
+    private ToacitoConfig config;
 
-	private boolean ranged = true;
-	private boolean Overlaycito = false;
-	private NPC maricon;
+    @Inject
+    Pantheon(ToacitoConfig config) {
+        this.config = config;
+    }
 
 
+    private boolean ranged = true;
+    private boolean Overlaycito = false;
+    private NPC maricon;
 
 
+    public void cargar() {
+        this.overlayManager.add(pantheonOverlay);
+        this.overlayManager.add(pantheonPrayOverlay);
+    }
 
-	public void cargar(){
-		this.overlayManager.add(pantheonOverlay);
-		this.overlayManager.add(pantheonPrayOverlay);
-	}
+    public void descargar() {
+        this.overlayManager.remove(pantheonOverlay);
+        this.overlayManager.remove(pantheonPrayOverlay);
+    }
 
-	public void descargar(){
-		this.overlayManager.remove(pantheonOverlay);
-		this.overlayManager.remove(pantheonPrayOverlay);
-	}
+    @Subscribe
+    public void onAnimationChanged(AnimationChanged event) {
+        if (event == null || !(event.getActor() instanceof NPC)) {
+            return;
+        }
 
-	@Subscribe
-	public void onAnimationChanged(AnimationChanged event)
-	{
-		if(event == null || !(event.getActor() instanceof NPC))
-		{
-			return;
-		}
+        if (((NPC) event.getActor()).getId() == 11777) {
+            if (event.getActor().getAnimation() == 9777) {
+                ranged = !ranged;
+            }
+        }
+    }
 
-		if(((NPC) event.getActor()).getId()==11777){
-			if (event.getActor().getAnimation() == 9777)
-			{
-				ranged = !ranged;
-			}
-		}
-	}
+    @Subscribe
+    public void onNpcSpawned(NpcSpawned event) {
+        if (event.getNpc() == null) {
+            return;
+        }
+        if (event.getNpc().getId() == 11777) {
+            maricon = event.getNpc();
+            Overlaycito = !Overlaycito;
+        }
+    }
 
-	@Subscribe
-	public void onNpcSpawned(NpcSpawned event)
-	{
-		if(event.getNpc() == null){
-			return;
-		}
-		if(event.getNpc().getId() == 11777){
-			maricon=event.getNpc();
-			Overlaycito = !Overlaycito;
-		}
-	}
-
-	@Subscribe
-	public void onNpcDespawned(NpcDespawned event)
-	{
-		if(event.getNpc() == null){
-			return;
-		}
-		if(event.getNpc().getId() == 11777){
-			maricon=null;
-			Overlaycito = !Overlaycito;
-			ranged = true;
-		}
-	}
+    @Subscribe
+    public void onNpcDespawned(NpcDespawned event) {
+        if (event.getNpc() == null) {
+            return;
+        }
+        if (event.getNpc().getId() == 11777) {
+            maricon = null;
+            Overlaycito = !Overlaycito;
+            ranged = true;
+        }
+    }
 
 }

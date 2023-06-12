@@ -25,7 +25,7 @@ public class TheatrePrayerUtil {
                 map.put(attack.getTicksUntil(), attack);
             }
 
-            if (attack.getPriority() < ((TheatreUpcomingAttack)map.get(attack.getTicksUntil())).getPriority()) {
+            if (attack.getPriority() < ((TheatreUpcomingAttack) map.get(attack.getTicksUntil())).getPriority()) {
                 map.put(attack.getTicksUntil(), attack);
             }
 

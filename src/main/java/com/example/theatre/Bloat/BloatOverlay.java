@@ -48,8 +48,8 @@ public class BloatOverlay extends RoomOverlay {
             if (this.config.bloatHands()) {
                 Iterator var6 = this.bloat.getBloatHands().keySet().iterator();
 
-                while(var6.hasNext()) {
-                    WorldPoint point = (WorldPoint)var6.next();
+                while (var6.hasNext()) {
+                    WorldPoint point = (WorldPoint) var6.next();
                     this.drawTile(graphics, point, this.config.bloatHandsColor(), this.config.bloatHandsWidth(), 255, 10);
                 }
             }

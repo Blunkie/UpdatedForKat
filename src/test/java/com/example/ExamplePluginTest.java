@@ -17,19 +17,18 @@ import com.example.faldita.FaldaPlugin;
 import com.example.gauntletFlicker.gauntletFlicker;
 import com.example.harpoon2ticker.SwordFish2Tick;
 import com.example.superglass.SuperGlassMakerPlugin;
+import com.example.JadsHelper.JadsHelper;
 import net.runelite.client.RuneLite;
 import net.runelite.client.externalplugins.ExternalPluginManager;
 
-public class ExamplePluginTest
-{
-    public static void main(String[] args) throws Exception
-    {
+public class ExamplePluginTest {
+    public static void main(String[] args) throws Exception {
         ExternalPluginManager.loadBuiltin(EthanApiPlugin.class, PacketUtilsPlugin.class, EthanPrayerFlickerPlugin.class,
                 gauntletFlicker.class,
                 SuperGlassMakerPlugin.class, UpkeepPlugin.class, LavaRunecrafterPlugin.class,
                 NightmareHelperPlugin.class, SwordFish2Tick.class, e3t4g.class, AutoTele.class,
                 GorilasPlugin.class, ToacitoPlugin.class, FaldaPlugin.class, aggroReset.class, neverlogout.class,
-                agroReset.class
+                agroReset.class, JadsHelper.class
         );
         RuneLite.main(args);
     }

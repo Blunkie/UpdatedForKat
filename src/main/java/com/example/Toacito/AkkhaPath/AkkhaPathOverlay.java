@@ -12,35 +12,35 @@ import java.awt.*;
 
 @Slf4j
 public class AkkhaPathOverlay extends Overlay {
-	@Inject
-	private Client client;
+    @Inject
+    private Client client;
 
-	@Inject
-	private AkkhaPath akkhaPath;
+    @Inject
+    private AkkhaPath akkhaPath;
 
-	@Inject
-	protected ToacitoConfig toacitoConfig;
+    @Inject
+    protected ToacitoConfig toacitoConfig;
 
-	@Inject
-	AkkhaPathOverlay (Client client, AkkhaPath akkhaPath, ToacitoConfig config){
-		this.akkhaPath=akkhaPath;
-		this.client=client;
-		this.toacitoConfig=config;
-		setPosition(OverlayPosition.DYNAMIC);
-		setLayer(OverlayLayer.ABOVE_SCENE);
-		setPriority(OverlayPriority.HIGH);
-	}
+    @Inject
+    AkkhaPathOverlay(Client client, AkkhaPath akkhaPath, ToacitoConfig config) {
+        this.akkhaPath = akkhaPath;
+        this.client = client;
+        this.toacitoConfig = config;
+        setPosition(OverlayPosition.DYNAMIC);
+        setLayer(OverlayLayer.ABOVE_SCENE);
+        setPriority(OverlayPriority.HIGH);
+    }
 
-	@Override
-	public Dimension render(Graphics2D graphics) {
-		if( this.akkhaPath.getContador() >=0 && this.toacitoConfig.obeliskConfig()){
-			graphics.setFont(new Font("Arial",Font.BOLD,24));
-			Point punto = Perspective.getCanvasTextLocation(client,graphics,akkhaPath.getObelisko().getLocalLocation(),String.valueOf(akkhaPath.getContador()),0);
-			OverlayUtil.renderTextLocation(graphics,punto, String.valueOf(akkhaPath.getContador()), Color.MAGENTA);
-		}
+    @Override
+    public Dimension render(Graphics2D graphics) {
+        if (this.akkhaPath.getContador() >= 0 && this.toacitoConfig.obeliskConfig()) {
+            graphics.setFont(new Font("Arial", Font.BOLD, 24));
+            Point punto = Perspective.getCanvasTextLocation(client, graphics, akkhaPath.getObelisko().getLocalLocation(), String.valueOf(akkhaPath.getContador()), 0);
+            OverlayUtil.renderTextLocation(graphics, punto, String.valueOf(akkhaPath.getContador()), Color.MAGENTA);
+        }
 
-		return null;
-	}
+        return null;
+    }
 
 
 }

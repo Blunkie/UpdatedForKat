@@ -186,10 +186,10 @@ public class Xarpus extends Room {
         if (this.xarpusActive) {
             if (!this.xarpusExhumeds.isEmpty()) {
                 this.xarpusExhumeds.replaceAll((k, v) -> {
-                    return Pair.of(v.getLeft(), (Integer)v.getRight() - 1);
+                    return Pair.of(v.getLeft(), (Integer) v.getRight() - 1);
                 });
                 this.xarpusExhumeds.values().removeIf((p) -> {
-                    return (Integer)p.getRight() <= 0;
+                    return (Integer) p.getRight() <= 0;
                 });
             }
 
@@ -227,7 +227,7 @@ public class Xarpus extends Room {
             List<Player> players = this.client.getPlayers();
             Iterator var3 = players.iterator();
 
-            while(true) {
+            while (true) {
                 Point point;
                 do {
                     do {
@@ -241,19 +241,19 @@ public class Xarpus extends Room {
                                         return;
                                     }
 
-                                    player = (Player)var3.next();
-                                } while(player.getWorldLocation() == null);
+                                    player = (Player) var3.next();
+                                } while (player.getWorldLocation() == null);
 
                                 WorldPoint wpPlayer = player.getWorldLocation();
                                 lpPlayer = LocalPoint.fromWorld(this.client, wpPlayer.getX(), wpPlayer.getY());
                                 WorldPoint wpChest = WorldPoint.fromRegion(player.getWorldLocation().getRegionID(), 17, 5, player.getWorldLocation().getPlane());
                                 lpChest = LocalPoint.fromWorld(this.client, wpChest.getX(), wpChest.getY());
-                            } while(lpChest == null);
+                            } while (lpChest == null);
 
                             point = new Point(lpChest.getSceneX() - lpPlayer.getSceneX(), lpChest.getSceneY() - lpPlayer.getSceneY());
-                        } while(!this.isInSotetsegRegion());
-                    } while(point.getY() != 1);
-                } while(point.getX() != 1 && point.getX() != 2 && point.getX() != 3);
+                        } while (!this.isInSotetsegRegion());
+                    } while (point.getY() != 1);
+                } while (point.getX() != 1 && point.getX() != 2 && point.getX() != 3);
 
                 if (this.nextInstance) {
                     this.client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Xarpus instance timer started", "");

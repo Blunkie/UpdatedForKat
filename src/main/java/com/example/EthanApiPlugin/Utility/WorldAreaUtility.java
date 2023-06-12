@@ -14,7 +14,7 @@ import static com.example.PacketUtils.PacketReflection.client;
 
 public class WorldAreaUtility {
 
-    public static HashSet<WorldPoint> objectInteractableTiles(TileObject e){
+    public static HashSet<WorldPoint> objectInteractableTiles(TileObject e) {
 
         Point p;
         int x = 1;
@@ -31,9 +31,9 @@ public class WorldAreaUtility {
         WorldPoint location = WorldPoint.fromScene(client, lp.getX(), lp.getY(), e.getPlane());
         ArrayList<WorldPoint> interactablePoints = new ArrayList<>(new WorldArea(location, x, y).toWorldPointList());
         int corner1 = 0;
-        int corner2 = x-1;
-        int corner3 = (y*x)-(x-1);
-        int corner4 = (y*x)-1;
+        int corner2 = x - 1;
+        int corner3 = (y * x) - (x - 1);
+        int corner4 = (y * x) - 1;
         interactablePoints.remove(corner1);
         interactablePoints.remove(corner2);
         interactablePoints.remove(corner3);

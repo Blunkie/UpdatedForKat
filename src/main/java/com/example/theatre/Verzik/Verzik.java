@@ -139,8 +139,8 @@ public class Verzik extends Room {
         this.WEAPON_SET = new HashSet();
         Iterator var1 = COMMA_SPLITTER.split(this.config.weaponSet()).iterator();
 
-        while(var1.hasNext()) {
-            String s = (String)var1.next();
+        while (var1.hasNext()) {
+            String s = (String) var1.next();
 
             try {
                 this.WEAPON_SET.add(Integer.parseInt(s));
@@ -303,7 +303,7 @@ public class Verzik extends Room {
 
     private void removeUnwantedNPCs(String name) {
         MenuEntry[] oldEntries = this.client.getMenuEntries();
-        MenuEntry[] newEntries = (MenuEntry[])Arrays.stream(oldEntries).filter((e) -> {
+        MenuEntry[] newEntries = (MenuEntry[]) Arrays.stream(oldEntries).filter((e) -> {
             NPC npc = e.getNpc();
             return npc == null || Objects.equals(npc.getName(), name);
         }).toArray((x$0) -> {
@@ -376,16 +376,17 @@ public class Verzik extends Room {
                 if (this.verzikNPC.getId() == 8372 || this.verzikNPC.getId() == 10833 || this.verzikNPC.getId() == 10850) {
                     iterator = this.client.getProjectiles().iterator();
 
-                    label192: {
+                    label192:
+                    {
                         do {
                             do {
                                 if (!iterator.hasNext()) {
                                     break label192;
                                 }
 
-                                projectile = (Projectile)iterator.next();
-                            } while(projectile.getRemainingCycles() <= 0);
-                        } while(projectile.getId() != 1583 && projectile.getId() != 1585);
+                                projectile = (Projectile) iterator.next();
+                            } while (projectile.getRemainingCycles() <= 0);
+                        } while (projectile.getId() != 1583 && projectile.getId() != 1585);
 
                         this.handleVerzikAttacks(projectile);
                     }
@@ -398,8 +399,8 @@ public class Verzik extends Room {
                 if (!this.verzikRangeProjectiles.isEmpty()) {
                     iterator = this.verzikRangeProjectiles.keySet().iterator();
 
-                    while(iterator.hasNext()) {
-                        projectile = (Projectile)iterator.next();
+                    while (iterator.hasNext()) {
+                        projectile = (Projectile) iterator.next();
                         if (projectile.getRemainingCycles() < 1) {
                             iterator.remove();
                         }
@@ -415,8 +416,8 @@ public class Verzik extends Room {
                 if (this.lastPlayerLocation1 != null) {
                     iterator = this.verzikTornadoes.iterator();
 
-                    while(iterator.hasNext()) {
-                        MemorizedTornado tornado = (MemorizedTornado)iterator.next();
+                    while (iterator.hasNext()) {
+                        MemorizedTornado tornado = (MemorizedTornado) iterator.next();
                         WorldPoint tornadoLocation = tornado.getNpc().getWorldLocation();
                         if (tornado.getCurrentPosition() == null) {
                             tornado.setCurrentPosition(tornadoLocation);
@@ -455,8 +456,8 @@ public class Verzik extends Room {
                     boolean foundYellow = false;
                     Iterator var9 = this.client.getGraphicsObjects().iterator();
 
-                    while(var9.hasNext()) {
-                        GraphicsObject object = (GraphicsObject)var9.next();
+                    while (var9.hasNext()) {
+                        GraphicsObject object = (GraphicsObject) var9.next();
                         if (object.getId() == 1595) {
                             this.verzikYellows = this.verzikHardmodeSeenYellows ? 2 : 14;
                             this.verzikHardmodeSeenYellows = true;
@@ -540,10 +541,10 @@ public class Verzik extends Room {
                         ++this.verzikAttackCount;
                         if (this.verzikAttackCount < 10) {
                             this.verzikSpecial = SpecialAttack.NONE;
-                            this.verzikTicksUntilAttack = (Integer)adjust_for_enrage.apply(7);
+                            this.verzikTicksUntilAttack = (Integer) adjust_for_enrage.apply(7);
                         } else if (this.verzikAttackCount < 15) {
                             this.verzikSpecial = SpecialAttack.NONE;
-                            this.verzikTicksUntilAttack = (Integer)adjust_for_enrage.apply(7);
+                            this.verzikTicksUntilAttack = (Integer) adjust_for_enrage.apply(7);
                         } else if (this.verzikAttackCount < 16) {
                             this.verzikSpecial = SpecialAttack.YELLOWS;
                             if (this.isHM) {
@@ -553,13 +554,13 @@ public class Verzik extends Room {
                             }
                         } else if (this.verzikAttackCount < 20) {
                             this.verzikSpecial = SpecialAttack.NONE;
-                            this.verzikTicksUntilAttack = (Integer)adjust_for_enrage.apply(7);
+                            this.verzikTicksUntilAttack = (Integer) adjust_for_enrage.apply(7);
                         } else if (this.verzikAttackCount < 21) {
                             this.verzikSpecial = SpecialAttack.GREEN;
                             this.verzikTicksUntilAttack = 12;
                         } else {
                             this.verzikSpecial = SpecialAttack.NONE;
-                            this.verzikTicksUntilAttack = (Integer)adjust_for_enrage.apply(7);
+                            this.verzikTicksUntilAttack = (Integer) adjust_for_enrage.apply(7);
                         }
                     }
 

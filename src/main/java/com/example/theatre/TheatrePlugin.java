@@ -28,7 +28,7 @@ import javax.inject.Inject;
 @PluginDescriptor(
         name = "Teatro Sangriento",
         description = "All-in-one plugin for Theatre of Blood",
-        tags = {"ToB", "Theatre", "raids", "bloat", "verzik", "nylo", "xarpus", "sotetseg", "maiden","pajau"},
+        tags = {"ToB", "Theatre", "raids", "bloat", "verzik", "nylo", "xarpus", "sotetseg", "maiden", "pajau"},
         enabledByDefault = false
 )
 public class TheatrePlugin extends Plugin {
@@ -67,7 +67,7 @@ public class TheatrePlugin extends Plugin {
 
     @Provides
     TheatreConfig getConfig(ConfigManager configManager) {
-        return (TheatreConfig)configManager.getConfig(TheatreConfig.class);
+        return (TheatreConfig) configManager.getConfig(TheatreConfig.class);
     }
 
     protected void startUp() {
@@ -80,7 +80,7 @@ public class TheatrePlugin extends Plugin {
             var1 = this.rooms;
             var2 = var1.length;
 
-            for(var3 = 0; var3 < var2; ++var3) {
+            for (var3 = 0; var3 < var2; ++var3) {
                 room = var1[var3];
                 room.init();
             }
@@ -89,7 +89,7 @@ public class TheatrePlugin extends Plugin {
         var1 = this.rooms;
         var2 = var1.length;
 
-        for(var3 = 0; var3 < var2; ++var3) {
+        for (var3 = 0; var3 < var2; ++var3) {
             room = var1[var3];
             room.load();
         }
@@ -100,7 +100,7 @@ public class TheatrePlugin extends Plugin {
         Room[] var1 = this.rooms;
         int var2 = var1.length;
 
-        for(int var3 = 0; var3 < var2; ++var3) {
+        for (int var3 = 0; var3 < var2; ++var3) {
             Room room = var1[var3];
             room.unload();
         }
@@ -137,7 +137,7 @@ public class TheatrePlugin extends Plugin {
         if (this.tobActive) {
             partySize = 0;
 
-            for(int i = 330; i < 335; ++i) {
+            for (int i = 330; i < 335; ++i) {
                 if (this.client.getVarcStrValue(i) != null && !this.client.getVarcStrValue(i).equals("")) {
                     ++partySize;
                 }

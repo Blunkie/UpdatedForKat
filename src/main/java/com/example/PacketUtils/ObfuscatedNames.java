@@ -5,23 +5,23 @@ import java.util.HashMap;
 public final class ObfuscatedNames {
 
     public static final HashMap<String, String> BUFFER_METHODS = new HashMap<>() {{
-        put("ef","-1426704705");
-        put("be","-3");
-        put("dx","-1334856703");
-        put("dy","-5");
-        put("ez","-35");
-        put("bw","-88709237");
-        put("bh","3408");
-        put("dj","1752473602");
-        put("dz","-2062130313");
-        put("dk","2027016403");
-        put("em","2095385223");
-        put("do","7");
+        put("ef", "-1426704705");
+        put("be", "-3");
+        put("dx", "-1334856703");
+        put("dy", "-5");
+        put("ez", "-35");
+        put("bw", "-88709237");
+        put("bh", "3408");
+        put("dj", "1752473602");
+        put("dz", "-2062130313");
+        put("dk", "2027016403");
+        put("em", "2095385223");
+        put("do", "7");
     }};
 
-      public static final String bufferArrayField = "ak";
-      public static final String bufferOffsetField = "ae";
-//    public static final String clientMouseLastLastPressedTimeMillis = "eo";
+    public static final String bufferArrayField = "ak";
+    public static final String bufferOffsetField = "ae";
+    //    public static final String clientMouseLastLastPressedTimeMillis = "eo";
 //    public static final String MouseHandler_lastPressedTimeMillisClass = "bd";
 //    public static final String MouseHandler_lastPressedTimeMillisField = "aj";
 //    public static final String MouseHandlerGarbage = "-1442809844282041895";
@@ -395,7 +395,7 @@ public final class ObfuscatedNames {
     public static final String MouseHandler_lastPressedTimeMillisClass = "bn";
     public static final String MouseHandler_lastPressedTimeMillisField = "ai";
     public static final String MouseHandlerGarbage = "6498376297210789637";
-    public static final String ClientMouseHandlerGarbage= "4920127030277158151";
+    public static final String ClientMouseHandlerGarbage = "4920127030277158151";
     public static final String ClientMouseSetterGarbage = "-663943980993325933";
     public static final String OPPLAYER2_OBFUSCATEDNAME = "dq";
     public static final String OPPLAYER2_WRITE1 = "ctrlDown";

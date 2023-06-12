@@ -16,56 +16,56 @@ import javax.inject.Inject;
 
 @Getter
 public class Baba extends Sala {
-	@Inject
-	private Client client;
+    @Inject
+    private Client client;
 
-	@Inject
-	private BabaOverlay babaOverlay;
+    @Inject
+    private BabaOverlay babaOverlay;
 
-	@Inject
-	private OverlayManager overlayManager;
-	private int count;
-	private NPC mona;
+    @Inject
+    private OverlayManager overlayManager;
+    private int count;
+    private NPC mona;
 
-	@Inject
-	protected Baba(ToacitoConfig config, ToacitoPlugin plugin) {
-		super(config, plugin);
-	}
+    @Inject
+    protected Baba(ToacitoConfig config, ToacitoPlugin plugin) {
+        super(config, plugin);
+    }
 
 
-	@Override
-	public void load() {
-		this.overlayManager.add(babaOverlay);
-	}
+    @Override
+    public void load() {
+        this.overlayManager.add(babaOverlay);
+    }
 
-	@Override
-	public void unload() {
-		this.overlayManager.remove(babaOverlay);
-	}
+    @Override
+    public void unload() {
+        this.overlayManager.remove(babaOverlay);
+    }
 
-	//9743
-	@Subscribe
-	public void onGameTick(GameTick event){
-		if (count>=0){
-			count--;
-		}
-	}
+    //9743
+    @Subscribe
+    public void onGameTick(GameTick event) {
+        if (count >= 0) {
+            count--;
+        }
+    }
 
-	@Subscribe
-	public void onAnimationChanged(AnimationChanged event){
-		if(event.getActor()!=null){
-			if(event.getActor().getAnimation()==9743){
-				count=6;
-			}
-		}
-	}
+    @Subscribe
+    public void onAnimationChanged(AnimationChanged event) {
+        if (event.getActor() != null) {
+            if (event.getActor().getAnimation() == 9743) {
+                count = 6;
+            }
+        }
+    }
 
-	@Subscribe
-	public void onNpcSpawned(NpcSpawned event){
-		if(event.getNpc()!=null){
-			if(event.getNpc().getId()==11778){
-				mona=event.getNpc();
-			}
-		}
-	}
+    @Subscribe
+    public void onNpcSpawned(NpcSpawned event) {
+        if (event.getNpc() != null) {
+            if (event.getNpc().getId() == 11778) {
+                mona = event.getNpc();
+            }
+        }
+    }
 }

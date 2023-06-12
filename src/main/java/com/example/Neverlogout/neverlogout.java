@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import java.time.Duration;
 
 @PluginDescriptor(name = "<html><font color=\"#ff6961\">NeverLogOut</font></html>",
-        tags = {"pajau","neverlogout"}
+        tags = {"pajau", "neverlogout"}
 )
 public class neverlogout extends Plugin {
     @Inject
@@ -19,7 +19,7 @@ public class neverlogout extends Plugin {
 
     @Override
     protected void startUp() throws Exception {
-        client.setIdleTimeout((int) Duration.ofMinutes(60*5).toMillis() / Constants.CLIENT_TICK_LENGTH);
+        client.setIdleTimeout((int) Duration.ofMinutes(60 * 5).toMillis() / Constants.CLIENT_TICK_LENGTH);
     }
 
 }

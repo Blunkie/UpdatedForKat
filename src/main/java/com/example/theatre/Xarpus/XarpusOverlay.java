@@ -81,8 +81,8 @@ public class XarpusOverlay extends RoomOverlay {
             if ((this.config.xarpusExhumed() || this.config.xarpusExhumedTick()) && (boss.getId() == 8339 || boss.getId() == 10767 || boss.getId() == 10771) && !this.xarpus.getXarpusExhumeds().isEmpty()) {
                 Collection<Pair<GroundObject, Integer>> exhumeds = this.xarpus.getXarpusExhumeds().values();
                 exhumeds.forEach((p) -> {
-                    GroundObject o = (GroundObject)p.getLeft();
-                    int ticks = (Integer)p.getRight();
+                    GroundObject o = (GroundObject) p.getLeft();
+                    int ticks = (Integer) p.getRight();
                     if (this.config.xarpusExhumed()) {
                         Polygon poly = o.getCanvasTilePoly();
                         if (poly != null) {
@@ -122,16 +122,16 @@ public class XarpusOverlay extends RoomOverlay {
                 Point[] points;
                 switch (dir) {
                     case NORTHEAST:
-                        points = markMeleeTiles ? (Point[])getNEMeleePoints.apply(xarpusWorldPoint) : (Point[])getNEBoxPoints.apply(xarpusWorldPoint);
+                        points = markMeleeTiles ? (Point[]) getNEMeleePoints.apply(xarpusWorldPoint) : (Point[]) getNEBoxPoints.apply(xarpusWorldPoint);
                         break;
                     case NORTHWEST:
-                        points = markMeleeTiles ? (Point[])getNWMeleePoints.apply(xarpusWorldPoint) : (Point[])getNWBoxPoints.apply(xarpusWorldPoint);
+                        points = markMeleeTiles ? (Point[]) getNWMeleePoints.apply(xarpusWorldPoint) : (Point[]) getNWBoxPoints.apply(xarpusWorldPoint);
                         break;
                     case SOUTHEAST:
-                        points = markMeleeTiles ? (Point[])getSEMeleePoints.apply(xarpusWorldPoint) : (Point[])getSEBoxPoints.apply(xarpusWorldPoint);
+                        points = markMeleeTiles ? (Point[]) getSEMeleePoints.apply(xarpusWorldPoint) : (Point[]) getSEBoxPoints.apply(xarpusWorldPoint);
                         break;
                     case SOUTHWEST:
-                        points = markMeleeTiles ? (Point[])getSWMeleePoints.apply(xarpusWorldPoint) : (Point[])getSWBoxPoints.apply(xarpusWorldPoint);
+                        points = markMeleeTiles ? (Point[]) getSWMeleePoints.apply(xarpusWorldPoint) : (Point[]) getSWBoxPoints.apply(xarpusWorldPoint);
                         break;
                     default:
                         return;

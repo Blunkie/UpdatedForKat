@@ -76,10 +76,10 @@ public class NylocasAliveCounterOverlay extends Overlay {
             if (this.nyloWaveStart != null) {
                 Iterator var2 = this.panelComponent.getChildren().iterator();
 
-                while(var2.hasNext()) {
-                    LayoutableRenderableEntity entity = (LayoutableRenderableEntity)var2.next();
+                while (var2.hasNext()) {
+                    LayoutableRenderableEntity entity = (LayoutableRenderableEntity) var2.next();
                     if (entity instanceof LineComponent && entity.equals(this.waveComponent)) {
-                        ((LineComponent)entity).setRight(this.getFormattedTime());
+                        ((LineComponent) entity).setRight(this.getFormattedTime());
                     }
                 }
             }

@@ -61,7 +61,7 @@ public class SotetsegOverlay extends RoomOverlay {
                 Iterator var8 = this.client.getProjectiles().iterator();
 
                 label87:
-                while(true) {
+                while (true) {
                     Projectile p;
                     int id;
                     do {
@@ -69,10 +69,10 @@ public class SotetsegOverlay extends RoomOverlay {
                             break label87;
                         }
 
-                        p = (Projectile)var8.next();
+                        p = (Projectile) var8.next();
                         id = p.getId();
-                        point = Perspective.localToCanvas(this.client, new LocalPoint((int)p.getX(), (int)p.getY()), 0, Perspective.getTileHeight(this.client, new LocalPoint((int)p.getX(), (int)p.getY()), p.getFloor()) - (int)p.getZ());
-                    } while(point == null);
+                        point = Perspective.localToCanvas(this.client, new LocalPoint((int) p.getX(), (int) p.getY()), 0, Perspective.getTileHeight(this.client, new LocalPoint((int) p.getX(), (int) p.getY()), p.getFloor()) - (int) p.getZ());
+                    } while (point == null);
 
                     if (p.getInteracting() == this.client.getLocalPlayer() && (id == 1606 || id == 1607) && this.config.sotetsegOrbAttacksTicks()) {
                         this.renderTextLocation(graphics, (id == 1606 ? "M" : "R") + p.getRemainingCycles() / 30, id == 1606 ? Color.CYAN : Color.GREEN, point);
@@ -91,8 +91,8 @@ public class SotetsegOverlay extends RoomOverlay {
                 Iterator var10;
                 Point p;
                 WorldPoint wp;
-                for(var10 = this.sotetseg.getRedTiles().iterator(); var10.hasNext(); ++counter) {
-                    p = (Point)var10.next();
+                for (var10 = this.sotetseg.getRedTiles().iterator(); var10.hasNext(); ++counter) {
+                    p = (Point) var10.next();
                     wp = this.sotetseg.worldPointFromMazePoint(p);
                     this.drawTile(graphics, wp, Color.WHITE, 1, 255, 0);
                     LocalPoint lp = LocalPoint.fromWorld(this.client, wp);
@@ -106,8 +106,8 @@ public class SotetsegOverlay extends RoomOverlay {
 
                 var10 = this.sotetseg.getGreenTiles().iterator();
 
-                while(var10.hasNext()) {
-                    p = (Point)var10.next();
+                while (var10.hasNext()) {
+                    p = (Point) var10.next();
                     wp = this.sotetseg.worldPointFromMazePoint(p);
                     this.drawTile(graphics, wp, Color.GREEN, 1, 255, 0);
                 }

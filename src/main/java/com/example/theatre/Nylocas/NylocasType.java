@@ -64,7 +64,7 @@ enum NylocasType {
         NylocasType[] var0 = values();
         int var1 = var0.length;
 
-        for(int var2 = 0; var2 < var1; ++var2) {
+        for (int var2 = 0; var2 < var1; ++var2) {
             NylocasType v = var0[var2];
             lookupMap.put(v.getId(), v);
             lookupMap.put(v.getId_sm(), v);

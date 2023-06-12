@@ -3,24 +3,24 @@ package com.example.faldita;
 import net.runelite.api.NPC;
 
 class MemorizedTotem {
-	private NPC npc;
+    private NPC npc;
 
-	private TotemPhase currentPhase;
+    private TotemPhase currentPhase;
 
-	NPC getNpc() {
-		return this.npc;
-	}
+    NPC getNpc() {
+        return this.npc;
+    }
 
-	TotemPhase getCurrentPhase() {
-		return this.currentPhase;
-	}
+    TotemPhase getCurrentPhase() {
+        return this.currentPhase;
+    }
 
-	MemorizedTotem(NPC npc) {
-		this.npc = npc;
-		updateCurrentPhase(npc.getId());
-	}
+    MemorizedTotem(NPC npc) {
+        this.npc = npc;
+        updateCurrentPhase(npc.getId());
+    }
 
-	public void updateCurrentPhase(int newId) {
-		this.currentPhase = TotemPhase.valueOf("TOTEM_" + newId);
-	}
+    public void updateCurrentPhase(int newId) {
+        this.currentPhase = TotemPhase.valueOf("TOTEM_" + newId);
+    }
 }

@@ -103,8 +103,8 @@ public class Bloat extends Room {
         Scene scene = this.client.getScene();
         Tile[][] tiles = scene.getTiles()[plane];
 
-        for(int sceneTilesX = 0; sceneTilesX < 104; ++sceneTilesX) {
-            for(int sceneTilesY = 0; sceneTilesY < 104; ++sceneTilesY) {
+        for (int sceneTilesX = 0; sceneTilesX < 104; ++sceneTilesX) {
+            for (int sceneTilesY = 0; sceneTilesY < 104; ++sceneTilesY) {
                 Tile tile = tiles[sceneTilesX][sceneTilesY];
                 if (tile != null) {
                     GameObject[] gameObjects = tile.getGameObjects();

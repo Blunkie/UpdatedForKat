@@ -11,8 +11,7 @@ import net.runelite.client.config.Range;
 import java.awt.*;
 
 @ConfigGroup("pathmarker")
-public interface PathMarkerConfig extends Config
-{
+public interface PathMarkerConfig extends Config {
     @ConfigSection(
             name = "Active Path",
             description = "All options related to your active path",
@@ -27,52 +26,49 @@ public interface PathMarkerConfig extends Config
     )
     String hoverPathSection = "hoverPath";
 
-    enum drawLocations
-    {
+    enum drawLocations {
         BOTH,
         GAME_WORLD,
         MINIMAP
     }
+
     @ConfigItem(
             keyName = "activePathDrawLocations",
             name = "Draw location(s)",
             description = "Marks your active path on the game world and/or the minimap",
             section = activePathSection
     )
-    default drawLocations activePathDrawLocations()
-    {
+    default drawLocations activePathDrawLocations() {
         return drawLocations.BOTH;
     }
 
-    enum DrawMode
-    {
+    enum DrawMode {
         FULL_PATH,
         TARGET_TILE
     }
+
     @ConfigItem(
             keyName = "activePathDrawMode",
             name = "Draw mode",
             description = "Determines which tiles are drawn",
             section = activePathSection
     )
-    default DrawMode activePathDrawMode()
-    {
+    default DrawMode activePathDrawMode() {
         return DrawMode.FULL_PATH;
     }
 
-    enum MarkerStyle
-    {
+    enum MarkerStyle {
         TILE,
         DOT
     }
+
     @ConfigItem(
             keyName = "activePathMarkerStyle",
             name = "Marker Style",
             description = "Shape of the path markers that are drawn",
             section = activePathSection
     )
-    default MarkerStyle activePathMarkerStyle()
-    {
+    default MarkerStyle activePathMarkerStyle() {
         return MarkerStyle.TILE;
     }
 
@@ -83,9 +79,8 @@ public interface PathMarkerConfig extends Config
             description = "The main outline color of your active path",
             section = activePathSection
     )
-    default Color activePathStroke1()
-    {
-        return new Color(255,0,0,255);
+    default Color activePathStroke1() {
+        return new Color(255, 0, 0, 255);
     }
 
     @Alpha
@@ -95,9 +90,8 @@ public interface PathMarkerConfig extends Config
             description = "The main fill color of your active path",
             section = activePathSection
     )
-    default Color activePathFill1()
-    {
-        return new Color(255,0,0,50);
+    default Color activePathFill1() {
+        return new Color(255, 0, 0, 50);
     }
 
     @Alpha
@@ -107,9 +101,8 @@ public interface PathMarkerConfig extends Config
             description = "The secondary outline color of your active path, indicating the tiles you 'skip' while running.",
             section = activePathSection
     )
-    default Color activePathStroke2()
-    {
-        return new Color(255,255,0,255);
+    default Color activePathStroke2() {
+        return new Color(255, 255, 0, 255);
     }
 
     @Alpha
@@ -119,26 +112,24 @@ public interface PathMarkerConfig extends Config
             description = "The secondary fill color of your active path, indicating the tiles you 'skip' while running.",
             section = activePathSection
     )
-    default Color activePathFill2()
-    {
-        return new Color(255,255,0,50);
+    default Color activePathFill2() {
+        return new Color(255, 255, 0, 50);
     }
 
-    enum PathDisplaySetting
-    {
+    enum PathDisplaySetting {
         ALWAYS,
         WHILE_KEY_PRESSED,
         TOGGLE_ON_KEYPRESS,
         NEVER
     }
+
     @ConfigItem(
             keyName = "activePathDisplaySetting",
             name = "Display",
             description = "Configures when the active path should be displayed",
             section = activePathSection
     )
-    default PathDisplaySetting activePathDisplaySetting()
-    {
+    default PathDisplaySetting activePathDisplaySetting() {
         return PathDisplaySetting.ALWAYS;
     }
 
@@ -148,8 +139,7 @@ public interface PathMarkerConfig extends Config
             description = "Sets the keybind for the Display setting.",
             section = activePathSection
     )
-    default Keybind displayKeybindActivePath()
-    {
+    default Keybind displayKeybindActivePath() {
         return Keybind.NOT_SET;
     }
 
@@ -159,8 +149,7 @@ public interface PathMarkerConfig extends Config
             description = "Marks your hover-path on the game world and/or the minimap",
             section = hoverPathSection
     )
-    default drawLocations hoverPathDrawLocations()
-    {
+    default drawLocations hoverPathDrawLocations() {
         return drawLocations.MINIMAP;
     }
 
@@ -170,8 +159,7 @@ public interface PathMarkerConfig extends Config
             description = "Determines which tiles are drawn",
             section = hoverPathSection
     )
-    default DrawMode hoverPathDrawMode()
-    {
+    default DrawMode hoverPathDrawMode() {
         return DrawMode.FULL_PATH;
     }
 
@@ -181,8 +169,7 @@ public interface PathMarkerConfig extends Config
             description = "Shape of the path markers that are drawn",
             section = hoverPathSection
     )
-    default MarkerStyle hoverPathMarkerStyle()
-    {
+    default MarkerStyle hoverPathMarkerStyle() {
         return MarkerStyle.TILE;
     }
 
@@ -193,9 +180,8 @@ public interface PathMarkerConfig extends Config
             description = "The main outline color of the hover-path",
             section = hoverPathSection
     )
-    default Color hoverPathStroke1()
-    {
-        return new Color(255,0,255,255);
+    default Color hoverPathStroke1() {
+        return new Color(255, 0, 255, 255);
     }
 
     @Alpha
@@ -205,9 +191,8 @@ public interface PathMarkerConfig extends Config
             description = "The main fill color of the hover-path",
             section = hoverPathSection
     )
-    default Color hoverPathFill1()
-    {
-        return new Color(255,0,255,50);
+    default Color hoverPathFill1() {
+        return new Color(255, 0, 255, 50);
     }
 
     @Alpha
@@ -217,9 +202,8 @@ public interface PathMarkerConfig extends Config
             description = "The secondary outline color of the hover-path, indicating the tiles you 'skip' while running.",
             section = hoverPathSection
     )
-    default Color hoverPathStroke2()
-    {
-        return new Color(0,255,0,255);
+    default Color hoverPathStroke2() {
+        return new Color(0, 255, 0, 255);
     }
 
     @Alpha
@@ -229,9 +213,8 @@ public interface PathMarkerConfig extends Config
             description = "The secondary fill color of the hover-path, indicating the tiles you 'skip' while running.",
             section = hoverPathSection
     )
-    default Color hoverPathFill2()
-    {
-        return new Color(0,255,0,50);
+    default Color hoverPathFill2() {
+        return new Color(0, 255, 0, 50);
     }
 
     @ConfigItem(
@@ -240,8 +223,7 @@ public interface PathMarkerConfig extends Config
             description = "Configures when the hover-path should be displayed",
             section = hoverPathSection
     )
-    default PathDisplaySetting hoverPathDisplaySetting()
-    {
+    default PathDisplaySetting hoverPathDisplaySetting() {
         return PathDisplaySetting.ALWAYS;
     }
 
@@ -251,8 +233,7 @@ public interface PathMarkerConfig extends Config
             description = "Sets the keybind for the Display setting.",
             section = hoverPathSection
     )
-    default Keybind displayKeybindHoverPath()
-    {
+    default Keybind displayKeybindHoverPath() {
         return Keybind.NOT_SET;
     }
 
@@ -263,8 +244,7 @@ public interface PathMarkerConfig extends Config
             position = 0,
             section = hoverPathSection
     )
-    default boolean drawOnlyIfNoActivePath()
-    {
+    default boolean drawOnlyIfNoActivePath() {
         return false;
     }
 }

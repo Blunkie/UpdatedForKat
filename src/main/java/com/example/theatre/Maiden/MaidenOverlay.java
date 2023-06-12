@@ -41,8 +41,8 @@ public class MaidenOverlay extends RoomOverlay {
             if (this.config.maidenBlood()) {
                 var2 = this.maiden.getMaidenBloodSplatters().iterator();
 
-                while(var2.hasNext()) {
-                    point = (WorldPoint)var2.next();
+                while (var2.hasNext()) {
+                    point = (WorldPoint) var2.next();
                     this.drawTile(graphics, point, new Color(0, 150, 200), 2, 150, 10);
                 }
             }
@@ -50,15 +50,15 @@ public class MaidenOverlay extends RoomOverlay {
             if (this.config.maidenSpawns()) {
                 var2 = this.maiden.getMaidenBloodSpawnLocations().iterator();
 
-                while(var2.hasNext()) {
-                    point = (WorldPoint)var2.next();
+                while (var2.hasNext()) {
+                    point = (WorldPoint) var2.next();
                     this.drawTile(graphics, point, new Color(0, 150, 200), 2, 180, 20);
                 }
 
                 var2 = this.maiden.getMaidenBloodSpawnTrailingLocations().iterator();
 
-                while(var2.hasNext()) {
-                    point = (WorldPoint)var2.next();
+                while (var2.hasNext()) {
+                    point = (WorldPoint) var2.next();
                     this.drawTile(graphics, point, new Color(0, 150, 200), 1, 120, 10);
                 }
             }
@@ -74,11 +74,11 @@ public class MaidenOverlay extends RoomOverlay {
 
             if (this.maiden.isMaidenActive() && (this.config.maidenRedsHealth() || this.config.maidenRedsDistance())) {
                 this.displayNyloHpOverlayGrouped(graphics);
-                NPC[] reds = (NPC[])this.maiden.getMaidenReds().keySet().toArray(new NPC[0]);
+                NPC[] reds = (NPC[]) this.maiden.getMaidenReds().keySet().toArray(new NPC[0]);
                 NPC[] var11 = reds;
                 int var12 = reds.length;
 
-                for(int var5 = 0; var5 < var12; ++var5) {
+                for (int var5 = 0; var5 < var12; ++var5) {
                     NPC npc = var11[var5];
                     if (npc.getName() != null && npc.getHealthScale() > 0 && npc.getHealthRatio() < 100) {
                         Pair<Integer, Integer> newVal = new MutablePair(npc.getHealthRatio(), npc.getHealthScale());
@@ -108,12 +108,12 @@ public class MaidenOverlay extends RoomOverlay {
         FontMetrics fontMetrics = graphics.getFontMetrics();
         Iterator var4 = nyloGrouped.keys().iterator();
 
-        while(var4.hasNext()) {
-            Point point = (Point)var4.next();
+        while (var4.hasNext()) {
+            Point point = (Point) var4.next();
             int zOffset = 0;
 
-            for(Iterator<NPC> iterator = nyloGrouped.get(point).iterator(); iterator.hasNext(); zOffset += fontMetrics.getHeight()) {
-                NPC nyloNPC = (NPC)iterator.next();
+            for (Iterator<NPC> iterator = nyloGrouped.get(point).iterator(); iterator.hasNext(); zOffset += fontMetrics.getHeight()) {
+                NPC nyloNPC = (NPC) iterator.next();
                 this.drawNyloHpOverlay(graphics, nyloNPC, zOffset);
             }
         }
@@ -128,7 +128,7 @@ public class MaidenOverlay extends RoomOverlay {
             healthRatio = Math.min(healthRatio, nyloNPC.getHealthRatio());
         }
 
-        float nyloHp = (float)healthRatio / (float)healthScale * 100.0F;
+        float nyloHp = (float) healthRatio / (float) healthScale * 100.0F;
         String text = this.getNyloString(nyloNPC);
         Point textLocation = nyloNPC.getCanvasTextLocation(graphics, text, 0);
         if (!nyloNPC.isDead() && textLocation != null) {
@@ -151,8 +151,8 @@ public class MaidenOverlay extends RoomOverlay {
                 deltaX = Math.min(deltaX, nyloNPC.getHealthRatio());
             }
 
-            float percentage = (float)deltaX / (float)maidenX * 100.0F;
-            string = String.valueOf(DECIMAL_FORMAT.format((double)percentage));
+            float percentage = (float) deltaX / (float) maidenX * 100.0F;
+            string = String.valueOf(DECIMAL_FORMAT.format((double) percentage));
         }
 
         if (this.config.maidenRedsHealth() && this.config.maidenRedsDistance()) {
@@ -170,9 +170,9 @@ public class MaidenOverlay extends RoomOverlay {
 
     private Color percentageToColor(float percentage) {
         percentage = Math.max(Math.min(100.0F, percentage), 0.0F);
-        double rMod = 130.0 * (double)percentage / 100.0;
-        double gMod = 235.0 * (double)percentage / 100.0;
-        double bMod = 125.0 * (double)percentage / 100.0;
-        return new Color((int)Math.min(255.0, 255.0 - rMod), Math.min(255, (int)(20.0 + gMod)), Math.min(255, (int)(0.0 + bMod)));
+        double rMod = 130.0 * (double) percentage / 100.0;
+        double gMod = 235.0 * (double) percentage / 100.0;
+        double bMod = 125.0 * (double) percentage / 100.0;
+        return new Color((int) Math.min(255.0, 255.0 - rMod), Math.min(255, (int) (20.0 + gMod)), Math.min(255, (int) (0.0 + bMod)));
     }
 }

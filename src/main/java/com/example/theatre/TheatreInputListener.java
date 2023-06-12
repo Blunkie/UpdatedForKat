@@ -24,7 +24,7 @@ public class TheatreInputListener extends MouseAdapter {
 
     @Provides
     TheatreConfig getConfig(ConfigManager configManager) {
-        return (TheatreConfig)configManager.getConfig(TheatreConfig.class);
+        return (TheatreConfig) configManager.getConfig(TheatreConfig.class);
     }
 
     public MouseEvent mouseReleased(MouseEvent event) {

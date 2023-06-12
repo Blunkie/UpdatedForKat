@@ -82,7 +82,7 @@ public class NylocasOverlay extends RoomOverlay {
 
         if (this.nylocas.isNyloActive()) {
             if (this.config.nyloWavesHelper()) {
-                String[] nylocasWave = (String[])NylocasWave.wavesHelper.get(this.nylocas.getNyloWave() + 1);
+                String[] nylocasWave = (String[]) NylocasWave.wavesHelper.get(this.nylocas.getNyloWave() + 1);
                 if (nylocasWave != null) {
                     String eastSpawn = nylocasWave[0];
                     String southSpawn = nylocasWave[1];
@@ -115,9 +115,9 @@ public class NylocasOverlay extends RoomOverlay {
 
             Polygon westPoly;
             if (this.config.nyloTicksUntilWaves() && !this.nylocas.isNyloBossAlive()) {
-                LocalPoint eastPoint = LocalPoint.fromWorld(this.client, WorldPoint.fromRegion(((Player)Objects.requireNonNull(this.client.getLocalPlayer())).getWorldLocation().getRegionID(), 43, 25, this.client.getLocalPlayer().getWorldLocation().getPlane()));
-                LocalPoint southPoint = LocalPoint.fromWorld(this.client, WorldPoint.fromRegion(((Player)Objects.requireNonNull(this.client.getLocalPlayer())).getWorldLocation().getRegionID(), 25, 6, this.client.getLocalPlayer().getWorldLocation().getPlane()));
-                LocalPoint westPoint = LocalPoint.fromWorld(this.client, WorldPoint.fromRegion(((Player)Objects.requireNonNull(this.client.getLocalPlayer())).getWorldLocation().getRegionID(), 5, 24, this.client.getLocalPlayer().getWorldLocation().getPlane()));
+                LocalPoint eastPoint = LocalPoint.fromWorld(this.client, WorldPoint.fromRegion(((Player) Objects.requireNonNull(this.client.getLocalPlayer())).getWorldLocation().getRegionID(), 43, 25, this.client.getLocalPlayer().getWorldLocation().getPlane()));
+                LocalPoint southPoint = LocalPoint.fromWorld(this.client, WorldPoint.fromRegion(((Player) Objects.requireNonNull(this.client.getLocalPlayer())).getWorldLocation().getRegionID(), 25, 6, this.client.getLocalPlayer().getWorldLocation().getPlane()));
+                LocalPoint westPoint = LocalPoint.fromWorld(this.client, WorldPoint.fromRegion(((Player) Objects.requireNonNull(this.client.getLocalPlayer())).getWorldLocation().getRegionID(), 5, 24, this.client.getLocalPlayer().getWorldLocation().getPlane()));
                 Polygon southPoly = null;
                 Polygon eastPoly = null;
                 westPoly = null;
@@ -155,16 +155,16 @@ public class NylocasOverlay extends RoomOverlay {
                 npcMap = this.nylocas.getNylocasPillars();
                 var21 = npcMap.keySet().iterator();
 
-                while(var21.hasNext()) {
-                    npc = (NPC)var21.next();
-                    npcSize = (Integer)npcMap.get(npc);
+                while (var21.hasNext()) {
+                    npc = (NPC) var21.next();
+                    npcSize = (Integer) npcMap.get(npc);
                     String healthStr = npcSize + "%";
                     WorldPoint p = npc.getWorldLocation();
                     lp = LocalPoint.fromWorld(this.client, p.getX() + 1, p.getY() + 1);
-                    double rMod = 130.0 * (double)npcSize / 100.0;
-                    double gMod = 255.0 * (double)npcSize / 100.0;
-                    double bMod = 125.0 * (double)npcSize / 100.0;
-                    Color c = new Color((int)(255.0 - rMod), (int)(0.0 + gMod), (int)(0.0 + bMod));
+                    double rMod = 130.0 * (double) npcSize / 100.0;
+                    double gMod = 255.0 * (double) npcSize / 100.0;
+                    double bMod = 125.0 * (double) npcSize / 100.0;
+                    Color c = new Color((int) (255.0 - rMod), (int) (0.0 + gMod), (int) (0.0 + bMod));
                     if (lp != null) {
                         Point canvasPoint2 = Perspective.localToCanvas(this.client, lp, this.client.getPlane(), 65);
                         this.renderTextLocation(graphics, healthStr, c, canvasPoint2);
@@ -175,8 +175,8 @@ public class NylocasOverlay extends RoomOverlay {
             npcMap = this.nylocas.getNylocasNpcs();
             var21 = npcMap.keySet().iterator();
 
-            while(true) {
-                while(true) {
+            while (true) {
+                while (true) {
                     String name;
                     do {
                         do {
@@ -220,7 +220,7 @@ public class NylocasOverlay extends RoomOverlay {
                                     return null;
                                 }
 
-                                npc = (NPC)var21.next();
+                                npc = (NPC) var21.next();
                                 npcSize = npc.getComposition().getSize();
                                 if (this.config.nyloAggressiveOverlay() && this.nylocas.getAggressiveNylocas().contains(npc) && !npc.isDead()) {
                                     if (this.config.nyloAggressiveOverlayStyle() == AGGRESSIVENYLORENDERSTYLE.TILE) {
@@ -242,7 +242,7 @@ public class NylocasOverlay extends RoomOverlay {
                                     }
                                 }
 
-                                int ticksLeft = (Integer)npcMap.get(npc);
+                                int ticksLeft = (Integer) npcMap.get(npc);
                                 if (ticksLeft > -1 && ticksLeft <= this.config.nyloExplosionDisplayTicks()) {
                                     if (this.config.nyloTimeAlive() && !npc.isDead()) {
                                         int ticksAlive = ticksLeft;
@@ -269,11 +269,11 @@ public class NylocasOverlay extends RoomOverlay {
                                 }
 
                                 name = npc.getName();
-                            } while(!this.config.nyloHighlightOverlay());
-                        } while(npc.isDead());
+                            } while (!this.config.nyloHighlightOverlay());
+                        } while (npc.isDead());
 
                         lp = npc.getLocalLocation();
-                    } while(lp == null);
+                    } while (lp == null);
 
                     if (this.config.getHighlightMeleeNylo() && "Nylocas Ischyros".equals(name)) {
                         this.renderPoly(graphics, new Color(255, 188, 188), Perspective.getCanvasTileAreaPoly(this.client, lp, npcSize), 1);
@@ -293,11 +293,11 @@ public class NylocasOverlay extends RoomOverlay {
         if (!pointArray.isEmpty()) {
             String[] nyloSpawnSplitCsv = nyloHelperString.split("-");
             if (nyloSpawnSplitCsv.length > 1) {
-                for(int i = 0; i < nyloSpawnSplitCsv.length; ++i) {
-                    this.drawPoly(graphics, nyloSpawnSplitCsv[i], direction, LocalPoint.fromWorld(this.client, WorldPoint.fromRegion(((Player)Objects.requireNonNull(this.client.getLocalPlayer())).getWorldLocation().getRegionID(), ((Point)pointArray.get(i)).getX(), ((Point)pointArray.get(i)).getY(), this.client.getLocalPlayer().getWorldLocation().getPlane())));
+                for (int i = 0; i < nyloSpawnSplitCsv.length; ++i) {
+                    this.drawPoly(graphics, nyloSpawnSplitCsv[i], direction, LocalPoint.fromWorld(this.client, WorldPoint.fromRegion(((Player) Objects.requireNonNull(this.client.getLocalPlayer())).getWorldLocation().getRegionID(), ((Point) pointArray.get(i)).getX(), ((Point) pointArray.get(i)).getY(), this.client.getLocalPlayer().getWorldLocation().getPlane())));
                 }
             } else if (!nyloHelperString.isEmpty()) {
-                this.drawPoly(graphics, nyloHelperString, direction, LocalPoint.fromWorld(this.client, WorldPoint.fromRegion(((Player)Objects.requireNonNull(this.client.getLocalPlayer())).getWorldLocation().getRegionID(), ((Point)pointArray.get(0)).getX(), ((Point)pointArray.get(0)).getY(), this.client.getLocalPlayer().getWorldLocation().getPlane())));
+                this.drawPoly(graphics, nyloHelperString, direction, LocalPoint.fromWorld(this.client, WorldPoint.fromRegion(((Player) Objects.requireNonNull(this.client.getLocalPlayer())).getWorldLocation().getRegionID(), ((Point) pointArray.get(0)).getX(), ((Point) pointArray.get(0)).getY(), this.client.getLocalPlayer().getWorldLocation().getPlane())));
             }
 
         }
@@ -333,8 +333,8 @@ public class NylocasOverlay extends RoomOverlay {
     }
 
     private Point centerPoint(Rectangle rect) {
-        int x = (int)(rect.getX() + rect.getWidth() / 2.0);
-        int y = (int)(rect.getY() + rect.getHeight() / 2.0);
+        int x = (int) (rect.getX() + rect.getWidth() / 2.0);
+        int y = (int) (rect.getY() + rect.getHeight() / 2.0);
         return new Point(x, y);
     }
 

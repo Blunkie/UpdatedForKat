@@ -186,8 +186,8 @@ public class Sotetseg extends Room {
                 boolean foundBigOrb = false;
                 Iterator var3 = this.client.getProjectiles().iterator();
 
-                while(var3.hasNext()) {
-                    Projectile p = (Projectile)var3.next();
+                while (var3.hasNext()) {
+                    Projectile p = (Projectile) var3.next();
                     if (p.getId() == 1604) {
                         foundBigOrb = true;
                         break;

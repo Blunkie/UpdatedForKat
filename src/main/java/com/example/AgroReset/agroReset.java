@@ -31,7 +31,7 @@ import java.util.Objects;
 
 @Slf4j
 @PluginDescriptor(name = "<html><font color=\"#ff6961\">Agro Reset</font></html>",
-    tags = {"pajau"}
+        tags = {"pajau"}
 )
 @PluginDependency(NpcAggroAreaPlugin.class)
 public class agroReset extends Plugin {
@@ -51,48 +51,48 @@ public class agroReset extends Plugin {
     private GeneralPath AreaSafe;
 
     private Pathfinder pathfinder;
-    private boolean reseteando=false;
-    private int timeout=-1;
-    private int contador=0;
+    private boolean reseteando = false;
+    private int timeout = -1;
+    private int contador = 0;
     private int llave;
-    private final Color pint=Color.magenta;
-    private int estado=0;
+    private final Color pint = Color.magenta;
+    private int estado = 0;
 
     @Override
     protected void startUp() throws Exception {
         keyManager.registerKeyListener(caminador);
-        reseteando=false;
-        enAccion=false;
-        tilePelea=null;
-        choosen=null;
+        reseteando = false;
+        enAccion = false;
+        tilePelea = null;
+        choosen = null;
     }
 
     @Override
     protected void shutDown() throws Exception {
-        reseteando=false;
-        enAccion=false;
-        tilePelea=null;
-        choosen=null;
-        estado=0;
+        reseteando = false;
+        enAccion = false;
+        tilePelea = null;
+        choosen = null;
+        estado = 0;
     }
 
     private static WorldPoint choosen = null;
     public static WorldPoint tilePelea = null;
     private boolean enAccion = false;
-    private final KeyListener caminador = new HotkeyListener( ()->new Keybind(KeyEvent.VK_F6,0)){
+    private final KeyListener caminador = new HotkeyListener(() -> new Keybind(KeyEvent.VK_F6, 0)) {
         @Override
         public void hotkeyPressed() {
-            clientThread.invoke( () -> {
+            clientThread.invoke(() -> {
 
-                enAccion=!enAccion;
+                enAccion = !enAccion;
                 if (!enAccion) {
                     tilePelea = null;
-                    estado=0;
+                    estado = 0;
                     log.info("Se apago la wea");
                     client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", ColorUtil.wrapWithColorTag("Apagado", pint), "");
                 } else {
-                    tilePelea=client.getLocalPlayer().getWorldLocation();
-                    estado=10;
+                    tilePelea = client.getLocalPlayer().getWorldLocation();
+                    estado = 10;
                     log.info("Se prendio la wea");
                     client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", ColorUtil.wrapWithColorTag("Prendido", pint), "");
                 }
@@ -100,19 +100,19 @@ public class agroReset extends Plugin {
         }
     };
 
-    public boolean InsideSafe(){
-        return AreaSafe.contains(client.getLocalPlayer().getLocalLocation().getX(),client.getLocalPlayer().getLocalLocation().getY());
+    public boolean InsideSafe() {
+        return AreaSafe.contains(client.getLocalPlayer().getLocalLocation().getX(), client.getLocalPlayer().getLocalLocation().getY());
     }
 
-    public boolean InsideSafe(WorldPoint pt){
+    public boolean InsideSafe(WorldPoint pt) {
         return AreaSafe.contains(Objects.requireNonNull(LocalPoint.fromWorld(client, pt)).getX(),
                 Objects.requireNonNull(LocalPoint.fromWorld(client, pt)).getY());
     }
 
     @Subscribe
-    void onGameTick(GameTick event){
-        if(!enAccion) return;
-        if (timeout>0) {
+    void onGameTick(GameTick event) {
+        if (!enAccion) return;
+        if (timeout > 0) {
             timeout--;
             return;
         }
@@ -122,7 +122,7 @@ public class agroReset extends Plugin {
         }
 
 
-        CollisionData[] collisionData=client.getCollisionMaps();
+        CollisionData[] collisionData = client.getCollisionMaps();
         assert collisionData != null;
         CollisionData collActual = collisionData[client.getPlane()];
         Player jugador = client.getLocalPlayer();
@@ -135,29 +135,29 @@ public class agroReset extends Plugin {
         int baseX = client.getBaseX();
         int baseY = client.getBaseY();
 
-        if (estado==10) {
+        if (estado == 10) {
             if (!InCombat(jugador)
                     && npcAggroAreaPlugin.getEndTime().isBefore(Instant.now())
                     && playerPoint.equals(tilePelea)) {
                 log.info("Se acabo el tiempo de aggro, se procede a resetear");
-                estado=20;
-                timeout=5;
+                estado = 20;
+                timeout = 5;
             }
         } else if (estado == 20) {
-            if (Instant.now().isAfter(npcAggroAreaPlugin.getEndTime()) ) {
-                choosen=null;
+            if (Instant.now().isAfter(npcAggroAreaPlugin.getEndTime())) {
+                choosen = null;
                 for (int i = 1; i < 22; i++) {
-                    if (isWalkable(collActual,ScenePlayerX+i,ScenePlayerY+i) && !InsideSafe(playerPoint.dx(i).dy(i)) ) {
-                        choosen = new WorldPoint(baseX+ScenePlayerX+i,baseY+ScenePlayerY+i,client.getPlane());
+                    if (isWalkable(collActual, ScenePlayerX + i, ScenePlayerY + i) && !InsideSafe(playerPoint.dx(i).dy(i))) {
+                        choosen = new WorldPoint(baseX + ScenePlayerX + i, baseY + ScenePlayerY + i, client.getPlane());
                         break;
-                    } else if (isWalkable(collActual,ScenePlayerX-i,ScenePlayerY+i) && !InsideSafe(playerPoint.dx(-i).dy(i)) ) {
-                        choosen = new WorldPoint(baseX+ScenePlayerX-i,baseY+ScenePlayerY+i,client.getPlane());
+                    } else if (isWalkable(collActual, ScenePlayerX - i, ScenePlayerY + i) && !InsideSafe(playerPoint.dx(-i).dy(i))) {
+                        choosen = new WorldPoint(baseX + ScenePlayerX - i, baseY + ScenePlayerY + i, client.getPlane());
                         break;
-                    } else if (isWalkable(collActual,ScenePlayerX-i,ScenePlayerY-i) && !InsideSafe(playerPoint.dx(-i).dy(-i))) {
-                        choosen = new WorldPoint(baseX+ScenePlayerX-i,baseY+ScenePlayerY-i,client.getPlane());
+                    } else if (isWalkable(collActual, ScenePlayerX - i, ScenePlayerY - i) && !InsideSafe(playerPoint.dx(-i).dy(-i))) {
+                        choosen = new WorldPoint(baseX + ScenePlayerX - i, baseY + ScenePlayerY - i, client.getPlane());
                         break;
-                    } else if (isWalkable(collActual,ScenePlayerX+i,ScenePlayerY-i) && !InsideSafe(playerPoint.dx(i).dy(-i))) {
-                        choosen = new WorldPoint(baseX+ScenePlayerX+i,baseY+ScenePlayerY-i,client.getPlane());
+                    } else if (isWalkable(collActual, ScenePlayerX + i, ScenePlayerY - i) && !InsideSafe(playerPoint.dx(i).dy(-i))) {
+                        choosen = new WorldPoint(baseX + ScenePlayerX + i, baseY + ScenePlayerY - i, client.getPlane());
                         break;
                     }
                 }
@@ -170,24 +170,24 @@ public class agroReset extends Plugin {
                     log.info("Moviendo hacia un Tile reseteador");
                     MousePackets.queueClickPacket();
                     MovementPackets.queueMovement(choosen);
-                    estado=30;
+                    estado = 30;
                     if (choosen != null) {
-                        log.info("Tile escogido: {}",choosen);
+                        log.info("Tile escogido: {}", choosen);
                     }
                     return;
                 }
             }
-        } else if (estado==30) {
+        } else if (estado == 30) {
             if (playerPoint.equals(choosen)) {  //llego al tile reseteador
                 log.info("En el tile reseteador");
                 timeout = 4;
                 llave = 1;
-                estado=40;
+                estado = 40;
             }
-        } else if (estado==40) {
+        } else if (estado == 40) {
             if (playerPoint.equals(tilePelea)) {
-                estado=10;
-                choosen=null;
+                estado = 10;
+                choosen = null;
                 log.info("se llego");
                 return;
             }
@@ -203,23 +203,23 @@ public class agroReset extends Plugin {
         }*/
     }
 
-    public boolean InCombat(Player yo){
-        return yo.isInteracting() || yo.getAnimation()!=-1 || client.getNpcs().stream().anyMatch(mono-> {
-            if (mono.getInteracting()!=null) {
+    public boolean InCombat(Player yo) {
+        return yo.isInteracting() || yo.getAnimation() != -1 || client.getNpcs().stream().anyMatch(mono -> {
+            if (mono.getInteracting() != null) {
                 return mono.getInteracting().equals(yo);
             }
             return false;
         });
     }
 
-    public boolean isWalkable(CollisionData colData,int x,int y){
+    public boolean isWalkable(CollisionData colData, int x, int y) {
         return (colData.getFlags()[x][y] & (CollisionDataFlag.BLOCK_MOVEMENT_OBJECT + CollisionDataFlag.BLOCK_MOVEMENT_FLOOR +
                 CollisionDataFlag.BLOCK_MOVEMENT_FLOOR_DECORATION)) == 0;
     }
 
     @Subscribe
-    void onGameStateChanged(GameStateChanged event){
-        if(event.getGameState() == GameState.LOGGED_IN){
+    void onGameStateChanged(GameStateChanged event) {
+        if (event.getGameState() == GameState.LOGGED_IN) {
             AreaSafe = npcAggroAreaPlugin.getLinesToDisplay()[client.getPlane()];
         }
     }

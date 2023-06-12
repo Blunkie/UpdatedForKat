@@ -19,23 +19,23 @@ public class nmz extends Plugin {
     @Inject
     private Client client;
 
-    private int absPts,ovlFreshRemain,HP;
+    private int absPts, ovlFreshRemain, HP;
 
     @Override
     protected void startUp() throws Exception {
-        absPts=client.getVarbitValue(Varbits.NMZ_ABSORPTION);
-        ovlFreshRemain=client.getVarbitValue(Varbits.NMZ_OVERLOAD_REFRESHES_REMAINING);
-        log.info("Abs: {}     Ovl:{}",absPts,ovlFreshRemain);
+        absPts = client.getVarbitValue(Varbits.NMZ_ABSORPTION);
+        ovlFreshRemain = client.getVarbitValue(Varbits.NMZ_OVERLOAD_REFRESHES_REMAINING);
+        log.info("Abs: {}     Ovl:{}", absPts, ovlFreshRemain);
     }
 
     @Override
     protected void shutDown() throws Exception {
-        absPts=-1;
-        ovlFreshRemain=-1;
+        absPts = -1;
+        ovlFreshRemain = -1;
     }
 
     @Subscribe
-    void onGameTick(GameTick event){
+    void onGameTick(GameTick event) {
         if (inNmz()) {
             if (client.getVarbitValue(Varbits.NMZ_ABSORPTION) < 250) {
                 //drink absº
@@ -44,7 +44,7 @@ public class nmz extends Plugin {
 
     }
 
-    private boolean inNmz(){
+    private boolean inNmz() {
         if (client.getLocalPlayer() == null) {
             return false;
         }

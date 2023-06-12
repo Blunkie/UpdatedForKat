@@ -11,26 +11,25 @@ import net.runelite.client.plugins.PluginDescriptor;
 import javax.inject.Inject;
 
 @Slf4j
-@PluginDescriptor(name = "PaJau Constru",enabledByDefault = false)
+@PluginDescriptor(name = "PaJau Constru", enabledByDefault = false)
 public class ConstruPlugin extends Plugin {
-	@Inject
-	private Client client;
+    @Inject
+    private Client client;
 
-	@Subscribe
-	void onClientTick(ClientTick event){
+    @Subscribe
+    void onClientTick(ClientTick event) {
 
-		MenuEntry[] menus = this.client.getMenuEntries();
-		for(MenuEntry wea: menus){
-			if(wea.getTarget()==null) return;
-			if(wea.getTarget().contains("Portal")) return;
-			if(wea.getOption().contains("Remove") || wea.getOption().contains("Build")){
-				MenuEntry[] newEntries = new MenuEntry[1];
-				newEntries[0] = wea;
-				this.client.setMenuEntries(newEntries);
-			}
-		}
-	}
-
+        MenuEntry[] menus = this.client.getMenuEntries();
+        for (MenuEntry wea : menus) {
+            if (wea.getTarget() == null) return;
+            if (wea.getTarget().contains("Portal")) return;
+            if (wea.getOption().contains("Remove") || wea.getOption().contains("Build")) {
+                MenuEntry[] newEntries = new MenuEntry[1];
+                newEntries[0] = wea;
+                this.client.setMenuEntries(newEntries);
+            }
+        }
+    }
 
 
 }

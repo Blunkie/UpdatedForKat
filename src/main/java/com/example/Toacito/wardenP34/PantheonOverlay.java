@@ -12,46 +12,44 @@ import java.awt.*;
 
 public class PantheonOverlay extends Overlay {
 
-	@Inject
-	private Client client;
+    @Inject
+    private Client client;
 
-	@Inject
-	private Pantheon pantheon;
+    @Inject
+    private Pantheon pantheon;
 
-	@Inject
-	private ToacitoConfig config;
+    @Inject
+    private ToacitoConfig config;
 
 
-	@Inject
-	PantheonOverlay(Client client,Pantheon pantheon,ToacitoConfig config){
-		this.client=client;
-		this.pantheon=pantheon;
-		this.config=config;
-		setLayer(OverlayLayer.ABOVE_SCENE);
-		setPosition(OverlayPosition.DYNAMIC);
-		setPriority(OverlayPriority.HIGH);
-	}
+    @Inject
+    PantheonOverlay(Client client, Pantheon pantheon, ToacitoConfig config) {
+        this.client = client;
+        this.pantheon = pantheon;
+        this.config = config;
+        setLayer(OverlayLayer.ABOVE_SCENE);
+        setPosition(OverlayPosition.DYNAMIC);
+        setPriority(OverlayPriority.HIGH);
+    }
 
-	@Override
-	public Dimension render(Graphics2D graphics) {
-		if(pantheon.isOverlaycito() && config.pantheonConfig())
-		{
-			String texto;
-			Color colorcito;
-			if(pantheon.isRanged())
-			{
-				colorcito= Color.GREEN;
-				texto="Ranged";
-			}else {
-				colorcito= Color.CYAN;
-				texto = "Putopian";
-			}
-			graphics.setFont(new Font("Arial",Font.BOLD,24));
-			LocalPoint wea= pantheon.getMaricon().getLocalLocation();
-			Point punto = Perspective.getCanvasTextLocation(client,graphics,wea,texto,0);
-			OverlayUtil.renderTextLocation(graphics,punto,texto,colorcito);
-		}
+    @Override
+    public Dimension render(Graphics2D graphics) {
+        if (pantheon.isOverlaycito() && config.pantheonConfig()) {
+            String texto;
+            Color colorcito;
+            if (pantheon.isRanged()) {
+                colorcito = Color.GREEN;
+                texto = "Ranged";
+            } else {
+                colorcito = Color.CYAN;
+                texto = "Putopian";
+            }
+            graphics.setFont(new Font("Arial", Font.BOLD, 24));
+            LocalPoint wea = pantheon.getMaricon().getLocalLocation();
+            Point punto = Perspective.getCanvasTextLocation(client, graphics, wea, texto, 0);
+            OverlayUtil.renderTextLocation(graphics, punto, texto, colorcito);
+        }
 
-		return null;
-	}
+        return null;
+    }
 }

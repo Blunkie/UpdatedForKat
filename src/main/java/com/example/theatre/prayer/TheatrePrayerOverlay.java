@@ -61,14 +61,14 @@ public abstract class TheatrePrayerOverlay extends Overlay {
             Color color = tick == 1 ? this.config.prayerColorDanger() : this.config.prayerColor();
             Widget prayerWidget = this.client.getWidget(attack.getPrayer().getWidgetInfoExtended().getPackedId());
             if (prayerWidget != null) {
-                int baseX = (int)prayerWidget.getBounds().getX();
-                baseX = (int)((double)baseX + prayerWidget.getBounds().getWidth() / 2.0);
+                int baseX = (int) prayerWidget.getBounds().getX();
+                baseX = (int) ((double) baseX + prayerWidget.getBounds().getWidth() / 2.0);
                 baseX -= 5;
-                int baseY = (int)prayerWidget.getBounds().getY() - tick * 60 - 5;
-                baseY = (int)((double)baseY + (60.0 - (double)(this.getLastTick() + 600L - System.currentTimeMillis()) / 600.0 * 60.0));
+                int baseY = (int) prayerWidget.getBounds().getY() - tick * 60 - 5;
+                baseY = (int) ((double) baseY + (60.0 - (double) (this.getLastTick() + 600L - System.currentTimeMillis()) / 600.0 * 60.0));
                 Rectangle boxRectangle = new Rectangle(10, 5);
                 boxRectangle.translate(baseX, baseY);
-                if (attack.getPrayer().equals(((TheatreUpcomingAttack)tickPriorityMap.get(attack.getTicksUntil())).getPrayer())) {
+                if (attack.getPrayer().equals(((TheatreUpcomingAttack) tickPriorityMap.get(attack.getTicksUntil())).getPrayer())) {
                     OverlayUtil.renderPolygon(graphics, boxRectangle, color, color, new BasicStroke(2.0F));
                 } else if (this.config.indicateNonPriorityDescendingBoxes()) {
                     OverlayUtil.renderPolygon(graphics, boxRectangle, color, new Color(0, 0, 0, 0), new BasicStroke(2.0F));
@@ -79,7 +79,7 @@ public abstract class TheatrePrayerOverlay extends Overlay {
     }
 
     private void renderPrayerIconOverlay(Graphics2D graphics) {
-        TheatreUpcomingAttack attack = (TheatreUpcomingAttack)this.getAttackQueue().peek();
+        TheatreUpcomingAttack attack = (TheatreUpcomingAttack) this.getAttackQueue().peek();
         if (attack != null) {
             if (!this.client.isPrayerActive(Prayer.valueOf(attack.getPrayer().name()))) {
                 Widget prayerWidget = this.client.getWidget(attack.getPrayer().getWidgetInfoExtended().getPackedId());
@@ -87,8 +87,8 @@ public abstract class TheatrePrayerOverlay extends Overlay {
                     return;
                 }
 
-                Rectangle prayerRectangle = new Rectangle((int)prayerWidget.getBounds().getWidth(), (int)prayerWidget.getBounds().getHeight());
-                prayerRectangle.translate((int)prayerWidget.getBounds().getX(), (int)prayerWidget.getBounds().getY());
+                Rectangle prayerRectangle = new Rectangle((int) prayerWidget.getBounds().getWidth(), (int) prayerWidget.getBounds().getHeight());
+                prayerRectangle.translate((int) prayerWidget.getBounds().getX(), (int) prayerWidget.getBounds().getY());
                 OverlayUtil.renderPolygon(graphics, prayerRectangle, this.config.prayerColorDanger());
             }
 

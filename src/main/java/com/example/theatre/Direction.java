@@ -39,7 +39,7 @@ public enum Direction {
     }
 
     public static Direction getPreciseDirection(int angle) {
-        int ordinalDirection = (int)Math.round((double)angle / 256.0) % 8;
+        int ordinalDirection = (int) Math.round((double) angle / 256.0) % 8;
         switch (ordinalDirection) {
             case 0:
                 return SOUTH;

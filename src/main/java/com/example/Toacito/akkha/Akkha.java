@@ -17,47 +17,47 @@ import java.util.Map;
 
 @Slf4j
 public class Akkha extends Sala {
-	@Inject
-	private Client client;
-	private boolean captura;
+    @Inject
+    private Client client;
+    private boolean captura;
 
-	@Inject
-	protected Akkha(ToacitoConfig config, ToacitoPlugin plugin) {
-		super(config, plugin);
-	}
+    @Inject
+    protected Akkha(ToacitoConfig config, ToacitoPlugin plugin) {
+        super(config, plugin);
+    }
 
-	private final Map<Integer, NPC> orbes = new HashMap<>();
+    private final Map<Integer, NPC> orbes = new HashMap<>();
 
-	@Subscribe
-	public void onNpcSpawned(NpcSpawned event){
+    @Subscribe
+    public void onNpcSpawned(NpcSpawned event) {
 
-		if(event.getNpc().getId()==11804){
-			NPC orbe= event.getNpc();
-			orbes.putIfAbsent(orbe.getIndex(),orbe);
+        if (event.getNpc().getId() == 11804) {
+            NPC orbe = event.getNpc();
+            orbes.putIfAbsent(orbe.getIndex(), orbe);
 
-		}
+        }
 
-	}
+    }
 
-	@Subscribe
-	public void onNpcDespawned(NpcDespawned event){
+    @Subscribe
+    public void onNpcDespawned(NpcDespawned event) {
 		/*
 		if(event.getNpc().getId()==AKKHA){
 			captura =true;
 		}
 
 		 */
-		if(event.getNpc().getId()==11804){
-			NPC orbe = event.getNpc();
-			orbes.remove(orbe.getIndex());
-			orbe.getWorldLocation();
-		}
-	}
+        if (event.getNpc().getId() == 11804) {
+            NPC orbe = event.getNpc();
+            orbes.remove(orbe.getIndex());
+            orbe.getWorldLocation();
+        }
+    }
 
-	@Subscribe
-	public void onGameTick(GameTick event){
-		if(captura){
+    @Subscribe
+    public void onGameTick(GameTick event) {
+        if (captura) {
 
-		}
-	}
+        }
+    }
 }

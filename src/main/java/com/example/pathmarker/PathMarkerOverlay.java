@@ -15,8 +15,7 @@ import javax.inject.Inject;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
-public class PathMarkerOverlay extends Overlay
-{
+public class PathMarkerOverlay extends Overlay {
     private final Client client;
     private final PathMarkerPlugin plugin;
 
@@ -24,8 +23,7 @@ public class PathMarkerOverlay extends Overlay
     private PathMarkerConfig config;
 
     @Inject
-    private PathMarkerOverlay(Client client, PathMarkerConfig config, PathMarkerPlugin plugin)
-    {
+    private PathMarkerOverlay(Client client, PathMarkerConfig config, PathMarkerPlugin plugin) {
         this.client = client;
         this.plugin = plugin;
         this.config = config;
@@ -35,20 +33,14 @@ public class PathMarkerOverlay extends Overlay
     }
 
     @Override
-    public Dimension render(Graphics2D graphics)
-    {
+    public Dimension render(Graphics2D graphics) {
         if ((config.hoverPathDisplaySetting() != PathMarkerConfig.PathDisplaySetting.NEVER)
                 && (config.activePathDisplaySetting() == PathMarkerConfig.PathDisplaySetting.NEVER || !plugin.isPathActive() || !config.drawOnlyIfNoActivePath())
-                && (plugin.isKeyDisplayHoverPath() || config.hoverPathDisplaySetting() == PathMarkerConfig.PathDisplaySetting.ALWAYS))
-        {
-            for (WorldPoint worldPoint : plugin.getHoverPathTiles())
-            {
-                if (config.hoverPathDrawLocations() == PathMarkerConfig.drawLocations.BOTH || config.hoverPathDrawLocations() == PathMarkerConfig.drawLocations.GAME_WORLD)
-                {
-                    if (config.hoverPathDrawMode() == PathMarkerConfig.DrawMode.FULL_PATH || worldPoint == plugin.getHoverPathTiles().get(plugin.getHoverPathTiles().size() - 1))
-                    {
-                        switch( config.hoverPathMarkerStyle() )
-                        {
+                && (plugin.isKeyDisplayHoverPath() || config.hoverPathDisplaySetting() == PathMarkerConfig.PathDisplaySetting.ALWAYS)) {
+            for (WorldPoint worldPoint : plugin.getHoverPathTiles()) {
+                if (config.hoverPathDrawLocations() == PathMarkerConfig.drawLocations.BOTH || config.hoverPathDrawLocations() == PathMarkerConfig.drawLocations.GAME_WORLD) {
+                    if (config.hoverPathDrawMode() == PathMarkerConfig.DrawMode.FULL_PATH || worldPoint == plugin.getHoverPathTiles().get(plugin.getHoverPathTiles().size() - 1)) {
+                        switch (config.hoverPathMarkerStyle()) {
                             case TILE:
                                 renderTile(graphics, worldPoint, config.hoverPathStroke1(), config.hoverPathFill1());
                                 break;
@@ -59,14 +51,10 @@ public class PathMarkerOverlay extends Overlay
                     }
                 }
             }
-            for (WorldPoint worldPoint : plugin.getHoverMiddlePathTiles())
-            {
-                if (config.hoverPathDrawLocations() == PathMarkerConfig.drawLocations.BOTH || config.hoverPathDrawLocations() == PathMarkerConfig.drawLocations.GAME_WORLD)
-                {
-                    if (config.hoverPathDrawMode() == PathMarkerConfig.DrawMode.FULL_PATH || worldPoint == plugin.getHoverPathTiles().get(plugin.getHoverPathTiles().size() - 1))
-                    {
-                        switch( config.hoverPathMarkerStyle() )
-                        {
+            for (WorldPoint worldPoint : plugin.getHoverMiddlePathTiles()) {
+                if (config.hoverPathDrawLocations() == PathMarkerConfig.drawLocations.BOTH || config.hoverPathDrawLocations() == PathMarkerConfig.drawLocations.GAME_WORLD) {
+                    if (config.hoverPathDrawMode() == PathMarkerConfig.DrawMode.FULL_PATH || worldPoint == plugin.getHoverPathTiles().get(plugin.getHoverPathTiles().size() - 1)) {
+                        switch (config.hoverPathMarkerStyle()) {
                             case TILE:
                                 renderTile(graphics, worldPoint, config.hoverPathStroke2(), config.hoverPathFill2());
                                 break;
@@ -79,16 +67,11 @@ public class PathMarkerOverlay extends Overlay
             }
         }
         if (config.activePathDisplaySetting() != PathMarkerConfig.PathDisplaySetting.NEVER && plugin.isPathActive()
-                && (plugin.isKeyDisplayActivePath() || config.activePathDisplaySetting() == PathMarkerConfig.PathDisplaySetting.ALWAYS))
-        {
-            for (WorldPoint worldPoint : plugin.getActivePathTiles())
-            {
-                if (config.activePathDrawLocations() == PathMarkerConfig.drawLocations.BOTH || config.activePathDrawLocations() == PathMarkerConfig.drawLocations.GAME_WORLD)
-                {
-                    if (config.activePathDrawMode() == PathMarkerConfig.DrawMode.FULL_PATH || worldPoint == plugin.getActivePathTiles().get(plugin.getActivePathTiles().size() - 1))
-                    {
-                        switch( config.activePathMarkerStyle())
-                        {
+                && (plugin.isKeyDisplayActivePath() || config.activePathDisplaySetting() == PathMarkerConfig.PathDisplaySetting.ALWAYS)) {
+            for (WorldPoint worldPoint : plugin.getActivePathTiles()) {
+                if (config.activePathDrawLocations() == PathMarkerConfig.drawLocations.BOTH || config.activePathDrawLocations() == PathMarkerConfig.drawLocations.GAME_WORLD) {
+                    if (config.activePathDrawMode() == PathMarkerConfig.DrawMode.FULL_PATH || worldPoint == plugin.getActivePathTiles().get(plugin.getActivePathTiles().size() - 1)) {
+                        switch (config.activePathMarkerStyle()) {
                             case TILE:
                                 renderTile(graphics, worldPoint, config.activePathStroke1(), config.activePathFill1());
                                 break;
@@ -99,14 +82,10 @@ public class PathMarkerOverlay extends Overlay
                     }
                 }
             }
-            for (WorldPoint worldPoint : plugin.getActiveMiddlePathTiles())
-            {
-                if (config.activePathDrawLocations() == PathMarkerConfig.drawLocations.BOTH || config.activePathDrawLocations() == PathMarkerConfig.drawLocations.GAME_WORLD)
-                {
-                    if (config.activePathDrawMode() == PathMarkerConfig.DrawMode.FULL_PATH || worldPoint == plugin.getActivePathTiles().get(plugin.getActivePathTiles().size() - 1))
-                    {
-                        switch( config.activePathMarkerStyle())
-                        {
+            for (WorldPoint worldPoint : plugin.getActiveMiddlePathTiles()) {
+                if (config.activePathDrawLocations() == PathMarkerConfig.drawLocations.BOTH || config.activePathDrawLocations() == PathMarkerConfig.drawLocations.GAME_WORLD) {
+                    if (config.activePathDrawMode() == PathMarkerConfig.DrawMode.FULL_PATH || worldPoint == plugin.getActivePathTiles().get(plugin.getActivePathTiles().size() - 1)) {
+                        switch (config.activePathMarkerStyle()) {
                             case TILE:
                                 renderTile(graphics, worldPoint, config.activePathStroke2(), config.activePathFill2());
                                 break;
@@ -121,35 +100,29 @@ public class PathMarkerOverlay extends Overlay
         return null;
     }
 
-    private void renderTile(Graphics2D graphics, WorldPoint worldPoint, Color stroke_color, Color fill_color)
-    {
+    private void renderTile(Graphics2D graphics, WorldPoint worldPoint, Color stroke_color, Color fill_color) {
         Stroke stroke = new BasicStroke(1);
         LocalPoint lp = LocalPoint.fromWorld(client, worldPoint);
-        if (lp == null)
-        {
+        if (lp == null) {
             return;
         }
         final Polygon poly = Perspective.getCanvasTilePoly(client, lp);
-        if (poly == null)
-        {
+        if (poly == null) {
             return;
         }
 
         OverlayUtil.renderPolygon(graphics, poly, stroke_color, fill_color, stroke);
     }
 
-    private void renderDots(Graphics2D graphics, WorldPoint worldPoint, Color stroke_color, Color fill_color)
-    {
+    private void renderDots(Graphics2D graphics, WorldPoint worldPoint, Color stroke_color, Color fill_color) {
         Stroke stroke = new BasicStroke(2);
         LocalPoint lp = LocalPoint.fromWorld(client, worldPoint);
-        if (lp == null)
-        {
+        if (lp == null) {
             return;
         }
         final Point screenPoint = Perspective.localToCanvas(client, lp, 0);
-        final Ellipse2D dot = new Ellipse2D.Double( screenPoint.getX(), screenPoint.getY(), 8.0d, 8.0d );
-        if (dot == null)
-        {
+        final Ellipse2D dot = new Ellipse2D.Double(screenPoint.getX(), screenPoint.getY(), 8.0d, 8.0d);
+        if (dot == null) {
             return;
         }
 

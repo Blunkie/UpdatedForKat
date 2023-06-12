@@ -39,7 +39,7 @@ enum NylocasSpawnPoint {
         NylocasSpawnPoint[] var0 = values();
         int var1 = var0.length;
 
-        for(int var2 = 0; var2 < var1; ++var2) {
+        for (int var2 = 0; var2 < var1; ++var2) {
             NylocasSpawnPoint v = var0[var2];
             lookupMap.put(v.getPoint(), v);
         }

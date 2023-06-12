@@ -153,8 +153,8 @@ public class Maiden extends Room {
             this.maidenBloodSplatters.clear();
             Iterator var2 = this.client.getGraphicsObjects().iterator();
 
-            while(var2.hasNext()) {
-                GraphicsObject graphicsObject = (GraphicsObject)var2.next();
+            while (var2.hasNext()) {
+                GraphicsObject graphicsObject = (GraphicsObject) var2.next();
                 if (graphicsObject.getId() == 1579) {
                     this.maidenBloodSplatters.add(WorldPoint.fromLocal(this.client, graphicsObject.getLocation()));
                 }

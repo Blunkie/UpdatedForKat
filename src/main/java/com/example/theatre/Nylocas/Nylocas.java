@@ -169,8 +169,8 @@ public class Nylocas extends Room {
         }
 
         if (wave != 0) {
-            this.ticksSinceLastWave = ((NylocasWave)NylocasWave.waves.get(wave)).getWaveDelay();
-            this.ticksUntilNextWave = ((NylocasWave)NylocasWave.waves.get(wave)).getWaveDelay();
+            this.ticksSinceLastWave = ((NylocasWave) NylocasWave.waves.get(wave)).getWaveDelay();
+            this.ticksUntilNextWave = ((NylocasWave) NylocasWave.waves.get(wave)).getWaveDelay();
         }
 
         if (wave >= 20 && this.nylocasAliveCounterOverlay.getMaxNyloAlive() != 24) {
@@ -297,14 +297,14 @@ public class Nylocas extends Room {
     private void matchWave() {
         Set<NyloNPC> currentWaveKeySet = this.currentWave.keySet();
 
-        for(int wave = this.nyloWave + 1; wave <= 31; ++wave) {
+        for (int wave = this.nyloWave + 1; wave <= 31; ++wave) {
             boolean matched = true;
-            HashSet<NyloNPC> potentialWave = ((NylocasWave)NylocasWave.waves.get(wave)).getWaveData();
+            HashSet<NyloNPC> potentialWave = ((NylocasWave) NylocasWave.waves.get(wave)).getWaveData();
             Iterator var5 = potentialWave.iterator();
 
             NyloNPC nyloNPC;
-            while(var5.hasNext()) {
-                nyloNPC = (NyloNPC)var5.next();
+            while (var5.hasNext()) {
+                nyloNPC = (NyloNPC) var5.next();
                 if (!currentWaveKeySet.contains(nyloNPC)) {
                     matched = false;
                     break;
@@ -315,8 +315,8 @@ public class Nylocas extends Room {
                 this.setNyloWave(wave);
                 var5 = potentialWave.iterator();
 
-                while(var5.hasNext()) {
-                    nyloNPC = (NyloNPC)var5.next();
+                while (var5.hasNext()) {
+                    nyloNPC = (NyloNPC) var5.next();
                     if (nyloNPC.isAggressive()) {
                         this.aggressiveNylocas.add(this.currentWave.get(nyloNPC));
                     }
@@ -332,11 +332,11 @@ public class Nylocas extends Room {
     private NyloNPC matchNpc(NPC npc) {
         WorldPoint p = WorldPoint.fromLocalInstance(this.client, npc.getLocalLocation());
         Point point = new Point(p.getRegionX(), p.getRegionY());
-        NylocasSpawnPoint spawnPoint = (NylocasSpawnPoint)NylocasSpawnPoint.getLookupMap().get(point);
+        NylocasSpawnPoint spawnPoint = (NylocasSpawnPoint) NylocasSpawnPoint.getLookupMap().get(point);
         if (spawnPoint == null) {
             return null;
         } else {
-            NylocasType nylocasType = (NylocasType)NylocasType.getLookupMap().get(npc.getId());
+            NylocasType nylocasType = (NylocasType) NylocasType.getLookupMap().get(npc.getId());
             return nylocasType == null ? null : new NyloNPC(nylocasType, spawnPoint);
         }
     }
@@ -426,7 +426,7 @@ public class Nylocas extends Room {
     public void onAnimationChanged(AnimationChanged event) {
         Actor actor = event.getActor();
         if (actor instanceof NPC) {
-            switch (((NPC)actor).getId()) {
+            switch (((NPC) actor).getId()) {
                 case 8355:
                 case 8356:
                 case 8357:
@@ -444,7 +444,7 @@ public class Nylocas extends Room {
         }
 
         if (!this.bigNylos.isEmpty() && event.getActor() instanceof NPC) {
-            NPC npc = (NPC)event.getActor();
+            NPC npc = (NPC) event.getActor();
             if (this.bigNylos.contains(npc)) {
                 int anim = npc.getAnimation();
                 if (anim == 8005 || anim == 7991 || anim == 7998) {
@@ -518,17 +518,17 @@ public class Nylocas extends Room {
                     return;
                 }
 
-                int equippedWeapon = (Integer)ObjectUtils.defaultIfNull(this.client.getLocalPlayer().getPlayerComposition().getEquipmentId(KitType.WEAPON), -1);
-                this.weaponStyle = (WeaponStyle)WeaponMap.StyleMap.get(equippedWeapon);
+                int equippedWeapon = (Integer) ObjectUtils.defaultIfNull(this.client.getLocalPlayer().getPlayerComposition().getEquipmentId(KitType.WEAPON), -1);
+                this.weaponStyle = (WeaponStyle) WeaponMap.StyleMap.get(equippedWeapon);
             }
 
             Iterator<NPC> it = this.nylocasNpcs.keySet().iterator();
 
             NPC pillar;
             int healthPercent;
-            while(it.hasNext()) {
-                pillar = (NPC)it.next();
-                healthPercent = (Integer)this.nylocasNpcs.get(pillar);
+            while (it.hasNext()) {
+                pillar = (NPC) it.next();
+                healthPercent = (Integer) this.nylocasNpcs.get(pillar);
                 if (healthPercent < 0) {
                     it.remove();
                 } else {
@@ -538,8 +538,8 @@ public class Nylocas extends Room {
 
             it = this.nylocasPillars.keySet().iterator();
 
-            while(it.hasNext()) {
-                pillar = (NPC)it.next();
+            while (it.hasNext()) {
+                pillar = (NPC) it.next();
                 healthPercent = pillar.getHealthRatio();
                 if (healthPercent > -1) {
                     this.nylocasPillars.replace(pillar, healthPercent);
@@ -581,7 +581,7 @@ public class Nylocas extends Room {
         List<Player> players = this.client.getPlayers();
         Iterator var3 = players.iterator();
 
-        while(true) {
+        while (true) {
             Point point;
             do {
                 do {
@@ -595,19 +595,19 @@ public class Nylocas extends Room {
                                     return;
                                 }
 
-                                player = (Player)var3.next();
-                            } while(player.getWorldLocation() == null);
+                                player = (Player) var3.next();
+                            } while (player.getWorldLocation() == null);
 
                             lp = player.getLocalLocation();
                             WorldPoint wp = WorldPoint.fromRegion(player.getWorldLocation().getRegionID(), 5, 33, 0);
                             lp1 = LocalPoint.fromWorld(this.client, wp.getX(), wp.getY());
-                        } while(lp1 == null);
+                        } while (lp1 == null);
 
                         Point base = new Point(lp1.getSceneX(), lp1.getSceneY());
                         point = new Point(lp.getSceneX() - base.getX(), lp.getSceneY() - base.getY());
-                    } while(!this.inRoomRegion(TheatrePlugin.BLOAT_REGION));
-                } while(point.getX() != -1);
-            } while(point.getY() != -1 && point.getY() != -2 && point.getY() != -3);
+                    } while (!this.inRoomRegion(TheatrePlugin.BLOAT_REGION));
+                } while (point.getX() != -1);
+            } while (point.getY() != -1 && point.getY() != -2 && point.getY() != -3);
 
             if (this.nextInstance) {
                 this.client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Nylo instance timer started.", "");
@@ -621,7 +621,7 @@ public class Nylocas extends Room {
     @Subscribe
     public void onMenuOptionClicked(MenuOptionClicked event) {
         if (event.isItemOp() && event.getItemOp() == 2) {
-            WeaponStyle newStyle = (WeaponStyle)WeaponMap.StyleMap.get(event.getItemId());
+            WeaponStyle newStyle = (WeaponStyle) WeaponMap.StyleMap.get(event.getItemId());
             if (newStyle != null) {
                 this.skipTickCheck = true;
                 this.weaponStyle = newStyle;
@@ -703,7 +703,7 @@ public class Nylocas extends Room {
     @Subscribe
     public void onMenuOpened(MenuOpened menu) {
         if (this.config.nyloRecolorMenu() && this.nyloActive && this.nyloBossAlive) {
-            this.client.setMenuEntries((MenuEntry[])Arrays.stream(menu.getMenuEntries()).filter((s) -> {
+            this.client.setMenuEntries((MenuEntry[]) Arrays.stream(menu.getMenuEntries()).filter((s) -> {
                 return !s.getOption().equals("Examine");
             }).toArray((x$0) -> {
                 return new MenuEntry[x$0];
@@ -713,7 +713,7 @@ public class Nylocas extends Room {
 
     private void removeUnwantedNPCs(String name) {
         MenuEntry[] oldEntries = this.client.getMenuEntries();
-        MenuEntry[] newEntries = (MenuEntry[])Arrays.stream(oldEntries).filter((e) -> {
+        MenuEntry[] newEntries = (MenuEntry[]) Arrays.stream(oldEntries).filter((e) -> {
             NPC npc = e.getNpc();
             return npc == null || Objects.equals(npc.getName(), name);
         }).toArray((x$0) -> {
@@ -727,7 +727,7 @@ public class Nylocas extends Room {
 
     private void removeUnwantedNPCs(Set<Integer> ids) {
         MenuEntry[] oldEntries = this.client.getMenuEntries();
-        MenuEntry[] newEntries = (MenuEntry[])Arrays.stream(oldEntries).filter((e) -> {
+        MenuEntry[] newEntries = (MenuEntry[]) Arrays.stream(oldEntries).filter((e) -> {
             NPC npc = e.getNpc();
             return npc == null || ids.contains(npc.getId());
         }).toArray((x$0) -> {
